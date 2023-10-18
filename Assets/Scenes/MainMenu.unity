@@ -546,10 +546,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScene: {fileID: 1443296301}
-  slider: {fileID: 1102165908}
+  Loadslider: {fileID: 0}
   PausePanel: {fileID: 0}
   PauseButton: {fileID: 0}
   UnPauseButton: {fileID: 0}
+  SoundManager: {fileID: 0}
+  AudioSlider: {fileID: 0}
 --- !u!4 &632555620
 Transform:
   m_ObjectHideFlags: 0
@@ -658,7 +660,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: demoScene
+          m_StringArgument: AatifScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &701589445

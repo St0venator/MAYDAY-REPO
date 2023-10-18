@@ -21,6 +21,11 @@ public class SoundManager : MonoBehaviour
         swordSFX.Play();
     }
 
+    public void ChangeVolume(float value)
+    {
+        AudioListener.volume = value;
+    }
+
 
 
 }

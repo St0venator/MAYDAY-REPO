@@ -10,17 +10,22 @@ public class MenuManager : MonoBehaviour
 
     //Load Screen Game Objects
     public GameObject loadingScene;
-    public Slider slider;
+    public Slider Loadslider;
 
     //Pause Screen Game Objects
     public GameObject PausePanel;
-    public GameObject PauseButton;
-    public GameObject UnPauseButton;
+    public Button PauseButton;
+    public Button UnPauseButton;
 
+    //Audio Systems
+    public SoundManager SoundManager;
+    public Slider AudioSlider;
 
     private void Awake()
     {
+        //Hide Pause Menu Assets
         PausePanel.SetActive(false);
+        AudioSlider.gameObject.SetActive(false);
     }
 
 
@@ -45,7 +50,7 @@ public class MenuManager : MonoBehaviour
 
 
             float progress = Mathf.Clamp01(operation.progress/ 0.9f);
-            slider.value = progress;
+            Loadslider.value = progress;
 
 
             yield return null;
@@ -61,7 +66,8 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 0;
         PausePanel.SetActive(true);
-        PauseButton.SetActive(false);
+        PauseButton.gameObject.SetActive(false);
+        AudioSlider.gameObject.SetActive(true);
     }
     #endregion
 
@@ -71,12 +77,15 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1;
         PausePanel.SetActive(false);
-        PauseButton.SetActive(true);
+        PauseButton.gameObject.SetActive(true);
+        AudioSlider.gameObject.SetActive(false);
     }
     #endregion
 
-
-
+    public void GetAudioSliderValue()
+    {
+        SoundManager.ChangeVolume(AudioSlider.value);
+    }
 
 
 }
