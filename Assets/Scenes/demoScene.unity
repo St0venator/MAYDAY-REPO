@@ -2254,10 +2254,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScene: {fileID: 0}
-  slider: {fileID: 0}
+  Loadslider: {fileID: 0}
   PausePanel: {fileID: 75768985}
   PauseButton: {fileID: 391975609}
   UnPauseButton: {fileID: 1900908228}
+  SoundManager: {fileID: 0}
+  AudioSlider: {fileID: 0}
 --- !u!1001 &18307939393196680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2542,6 +2544,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 127443284864755610, guid: 6ba2f627f0735314f85a3fc7e69d8a50, type: 3}
+      propertyPath: range
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1797459259030387719, guid: 6ba2f627f0735314f85a3fc7e69d8a50, type: 3}
       propertyPath: m_Name
       value: worldCursor
