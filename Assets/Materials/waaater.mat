@@ -66,6 +66,7 @@ Material:
     - _fresnelMax: 1
     - _fresnelMin: 0
     - _fresnelPower: 0.67
+    - _noiseScale: 1
     - _speed1: 0.04
     - _speed2: 0.01
     - _tiling1: 0.1
