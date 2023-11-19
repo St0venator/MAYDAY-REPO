@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 188217894}
   - component: {fileID: 188217893}
   - component: {fileID: 188217892}
+  - component: {fileID: 188217895}
   m_Layer: 0
   m_Name: leftClaw
   m_TagString: Untagged
@@ -297,6 +298,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188217890}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!135 &188217895
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188217890}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &199645640
 GameObject:
   m_ObjectHideFlags: 3
@@ -738,6 +752,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 667907207}
+  - component: {fileID: 667907209}
   - component: {fileID: 667907208}
   m_Layer: 0
   m_Name: A*
@@ -754,7 +769,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667907206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 40, z: 61.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -770,14 +785,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 667907206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 203d63ccbfd61964f9c07b1e1f42b827, type: 3}
+  m_Script: {fileID: 11500000, guid: 327e6d9623f42c740a1a228c08dcf1b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unWalkableMask:
+--- !u!114 &667907209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667907206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3957b2f525886fa46ad518020a859f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayGridGizmos: 1
+  unwalkableMask:
     serializedVersion: 2
     m_Bits: 128
-  gridWorldSize: {x: 352, y: 495.5}
-  nodeRadius: 0.5
+  gridWorldSize: {x: 350, y: 1, z: 400}
+  nodeRadius: 0.9
+  walkableRegions:
+  - terrainMask:
+      serializedVersion: 2
+      m_Bits: 1
+    terrainPenatly: 0
+  obstacleProximityPenalty: 10
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,7 +1686,6 @@ GameObject:
   - component: {fileID: 1069925853}
   - component: {fileID: 1069925852}
   - component: {fileID: 1069925856}
-  - component: {fileID: 1069925857}
   m_Layer: 0
   m_Name: crabBody
   m_TagString: Untagged
@@ -1731,7 +1764,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069925851}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.9, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1757,50 +1790,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1069925857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069925851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffb16226f51966942b9feb9a3e54bd12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightClaw: {fileID: 2057746347}
-  leftClaw: {fileID: 2057746347}
-  weakSpot: {fileID: 1350227149}
-  carbSpeed: 15
-  crabDistancing: 7
-  crabSightRange: 20
-  crabAttackRange: 9
-  stunTime: 5
-  Jab:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1103985905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,6 +1866,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1203640420}
+  - component: {fileID: 1203640422}
+  - component: {fileID: 1203640421}
   m_Layer: 0
   m_Name: Carb
   m_TagString: Enemy
@@ -1892,7 +1883,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203640419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.91, y: -11.4, z: 56.36}
+  m_LocalPosition: {x: -12.4, y: -11.4, z: 56.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1900,6 +1891,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1203640421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203640419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5067cd587a66ddb4c9f895292a06230c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 636233335}
+  speed: 20
+  turnSpeed: 3
+  turnDst: 5
+  stoppingDst: 10
+--- !u!114 &1203640422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203640419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffb16226f51966942b9feb9a3e54bd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClaw: {fileID: 2057746352}
+  leftClaw: {fileID: 188217895}
+  weakSpot: {fileID: 1350227154}
+  carbSpeed: 15
+  crabDistancing: 7
+  crabSightRange: 20
+  crabAttackRange: 9
+  stunTime: 5
+  Jab:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1214818269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2126,6 +2160,7 @@ GameObject:
   - component: {fileID: 1350227153}
   - component: {fileID: 1350227152}
   - component: {fileID: 1350227151}
+  - component: {fileID: 1350227154}
   m_Layer: 0
   m_Name: crabWeakSpot
   m_TagString: Untagged
@@ -2211,6 +2246,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350227149}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!135 &1350227154
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350227149}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1 &1422230637
 GameObject:
   m_ObjectHideFlags: 0
@@ -2746,6 +2794,7 @@ GameObject:
   - component: {fileID: 2057746351}
   - component: {fileID: 2057746350}
   - component: {fileID: 2057746349}
+  - component: {fileID: 2057746352}
   m_Layer: 0
   m_Name: rightClaw
   m_TagString: Untagged
@@ -2831,6 +2880,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057746347}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!135 &2057746352
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057746347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2143558740
 GameObject:
   m_ObjectHideFlags: 0

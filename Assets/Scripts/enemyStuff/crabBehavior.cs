@@ -6,9 +6,9 @@ public class crabBehavior : MonoBehaviour
 {
     //Getting the different crab componesnts
     Rigidbody rb;
-    [SerializeField] private GameObject rightClaw;
-    [SerializeField] private GameObject leftClaw;
-    [SerializeField] private GameObject weakSpot;
+    [SerializeField] private SphereCollider rightClaw;
+    [SerializeField] private SphereCollider leftClaw;
+    [SerializeField] private SphereCollider weakSpot;
 
     //attributes of the crab
     [SerializeField] private float carbSpeed;
@@ -42,6 +42,26 @@ public class crabBehavior : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, crabDistancing);
+    }
+
+    void CrabPatrol()
+    {
+
+    }
+
+    void CrabChase()
+    {
+
+    }
+
+    void CrabAttack()
+    {
+
+    }
+
+    void CrabStunned()
+    {
+
     }
 }
 
