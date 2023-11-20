@@ -62,7 +62,7 @@ public class Grid : MonoBehaviour
 					int movementPenalty = 0;
 
 					
-					Ray ray = new Ray(worldPoint + Vector3.up * 50, Vector3.down);
+					Ray ray = new Ray(worldPoint + Vector3.left * 50, Vector3.right);
 					RaycastHit hit;
 					if(Physics.Raycast(ray, out hit, 100, walkableMask))
 					{
@@ -190,7 +190,7 @@ public class Grid : MonoBehaviour
 		{
 			foreach (Node n in grid) 
 			{
-				Gizmos.color = (n.walkable)?Gizmos.color:Color.red;
+				Gizmos.color = (n.walkable)?Color.white:Color.red;
 				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
 			}
 		}
@@ -203,3 +203,4 @@ public class TerrianType
 	public LayerMask terrainMask;
 	public int terrainPenatly;
 }
+
