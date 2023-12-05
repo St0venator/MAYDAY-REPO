@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AatifScene.unity
     guid: 8eefc4a188e01374cb0cbd46e3f4f32d
+  - enabled: 1
+    path: Assets/Scenes/SteveScene.unity
+    guid: a74dab887d213af478d03ca8822bd95d
   m_configObjects: {}
