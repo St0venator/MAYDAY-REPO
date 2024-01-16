@@ -903,12 +903,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   gridWorldSize: {x: 350, y: 350}
-  nodeRadius: 0.9
+  nodeRadius: 0.8
   walkableRegions:
   - terrainMask:
       serializedVersion: 2
       m_Bits: 64
-    terrainPenalty: 0
+    terrainPenatly: 0
   obstacleProximityPenalty: 10
 --- !u!114 &667907210
 MonoBehaviour:
@@ -1925,7 +1925,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 636233335}
   speed: 20
+  turnSpeed: 3
   turnDst: 5
+  stoppingDst: 10
 --- !u!1 &1103985905
 GameObject:
   m_ObjectHideFlags: 0
