@@ -5,7 +5,6 @@ using UnityEngine;
 public class crabBehavior : MonoBehaviour
 {
     //Getting the different crab componesnts
-    Rigidbody rb;
     [SerializeField] private SphereCollider rightClaw;
     [SerializeField] private SphereCollider leftClaw;
     [SerializeField] private SphereCollider weakSpot;
@@ -17,6 +16,11 @@ public class crabBehavior : MonoBehaviour
     [SerializeField] private float crabAttackRange;
     [SerializeField] private float stunTime;
     bool isCrabStunned = false;
+    public bool inAttackRange, inSightRange, inGround;
+
+    //Reference to other objects
+    [SerializeField] private MeshCollider wall;
+    [SerializeField] private Transform player;
 
     //Animation curve of the crabs attack
     [SerializeField] private AnimationCurve Jab;
@@ -28,7 +32,20 @@ public class crabBehavior : MonoBehaviour
 
     void Update()
     {
-        
+        //inSightRange = Physics.CheckSphere(transform.position, crabSightRange, player);
+        //inAttackRange = Physics.CheckSphere(transform.position, crabAttackRange, player);
+        //inGround = Physics.CheckSphere(transform.position, crabDistancing, wall);
+
+        if(!inSightRange && !inAttackRange) CrabPatrol();
+
+        if(inSightRange && !inAttackRange) CrabChase();
+
+        if(inSightRange && inAttackRange) CrabAttack();
+
+        if(inGround)
+        {
+
+        }
     }
 
     //help visuallize the different atributes of the crab

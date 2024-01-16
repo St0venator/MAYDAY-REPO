@@ -1799,7 +1799,7 @@ GameObject:
   - component: {fileID: 1069925858}
   m_Layer: 0
   m_Name: crabBody
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1902,9 +1902,10 @@ MonoBehaviour:
   weakSpot: {fileID: 1350227154}
   carbSpeed: 15
   crabDistancing: 7
-  crabSightRange: 20
+  crabSightRange: 50
   crabAttackRange: 9
   stunTime: 5
+  wall: {fileID: 1819843924}
   Jab:
     serializedVersion: 2
     m_Curve: []
@@ -2691,6 +2692,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714846837}
   m_CullTransparentMesh: 1
+--- !u!1 &1819843923 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7651432011812916829, guid: 5c28767f05bbdab40a5f59b320808387, type: 3}
+  m_PrefabInstance: {fileID: 1573495142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1819843924
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819843923}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: dac2194f989e13143bfa61870a1c200a, type: 3}
 --- !u!1 &1900908228
 GameObject:
   m_ObjectHideFlags: 0
