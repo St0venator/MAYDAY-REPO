@@ -7,7 +7,6 @@ public class Node : IHeapItem<Node>
 	public Vector3 worldPosition;
 	public int gridX;
 	public int gridY;
-    public int gridZ;
     public int movementPenalty;
 
 	public int gCost;
@@ -15,13 +14,12 @@ public class Node : IHeapItem<Node>
 	public Node parent;
     int heapIndex;
 	
-	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY,int _gridZ, int _penalty) 
+	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY, int _penalty) 
     {
 		walkable = _walkable;
 		worldPosition = _worldPos;
 		gridX = _gridX;
 		gridY = _gridY;
-        gridZ = _gridZ;
         movementPenalty = _penalty;
 	}
 
