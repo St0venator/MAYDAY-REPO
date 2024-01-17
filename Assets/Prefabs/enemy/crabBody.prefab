@@ -487,6 +487,8 @@ MonoBehaviour:
   crabSightRange: 50
   crabAttackRange: 9
   stunTime: 5
+  timer: 5
+  bulletTime: 0
   enemyBullet: {fileID: 0}
   shootingPos: {fileID: 0}
   inAttackRange: 0
