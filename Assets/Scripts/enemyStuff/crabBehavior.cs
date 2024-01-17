@@ -15,12 +15,18 @@ public class crabBehavior : MonoBehaviour
     [SerializeField] private float crabSightRange;
     [SerializeField] private float crabAttackRange;
     [SerializeField] private float stunTime;
+    [SerializeField] private float timer = 5;
+    [SerializeField] private float bulletTime;
+    public GameObject enemyBullet;
+    public GameObject shootingPos;
+    //bool alreadyAttacked = false;
     bool isCrabStunned = false;
-    public bool inAttackRange, inSightRange, inGround;
+    [SerializeField] private bool inAttackRange, inSightRange, inGround;
+
 
     //Reference to other objects
     [SerializeField] private MeshCollider wall;
-    [SerializeField] private Transform player;
+    [SerializeField] private LayerMask player;
 
     //Animation curve of the crabs attack
     [SerializeField] private AnimationCurve Jab;
@@ -32,8 +38,8 @@ public class crabBehavior : MonoBehaviour
 
     void Update()
     {
-        //inSightRange = Physics.CheckSphere(transform.position, crabSightRange, player);
-        //inAttackRange = Physics.CheckSphere(transform.position, crabAttackRange, player);
+        inSightRange = Physics.CheckSphere(transform.position, crabSightRange, player);
+        inAttackRange = Physics.CheckSphere(transform.position, crabAttackRange, player);
         //inGround = Physics.CheckSphere(transform.position, crabDistancing, wall);
 
         if(!inSightRange && !inAttackRange) CrabPatrol();
@@ -73,7 +79,13 @@ public class crabBehavior : MonoBehaviour
 
     void CrabAttack()
     {
+        bulletTime -= Time.deltaTime;
+        if(bulletTime > 0) return;
 
+        bulletTime = timer;
+
+        Rigidbody bulletRb = Instantiate(enemyBullet, shootingPos.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+        bulletRb.AddForce(transform.forward * 50f, ForceMode.Impulse);
     }
 
     void CrabStunned()
