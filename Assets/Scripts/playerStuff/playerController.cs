@@ -97,6 +97,8 @@ public class playerController : MonoBehaviour
 
         Vector3 destDist = dest - startPos;
 
+        GetComponent<oxygenController>().reduceOxygen(Mathf.Abs(destDist.magnitude));
+
         if(destDist.magnitude > 10)
         {
             destDist = destDist.normalized * 10;

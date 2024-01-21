@@ -20,7 +20,7 @@ public class winCon : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.transform.localScale *= 100;
+            other.gameObject.GetComponent<oxygenController>().isWin = true;
         }
     }
 }
