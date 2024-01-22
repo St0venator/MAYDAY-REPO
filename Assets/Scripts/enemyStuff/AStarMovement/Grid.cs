@@ -13,10 +13,10 @@ public class Grid : MonoBehaviour
 	LayerMask walkableMask;
 	Dictionary<int, int> walkableRegionDictionary = new Dictionary<int, int>();
 	
-	Node[,] grid;
+	Node[,,] grid;
 
 	float nodeDiameter;
-	int gridSizeX, gridSizeY;
+	int gridSizeX, gridSizeY, gridSizeZ;
 	
 	int penaltyMin = int.MaxValue;
 	int penaltyMax = int.MinValue;
@@ -26,6 +26,7 @@ public class Grid : MonoBehaviour
 		nodeDiameter = nodeRadius*2;
 		gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
 		gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
+		gridSizeZ = Mathf.RoundToInt(gridWorldSize.z/nodeDiameter);
 
 		foreach(TerrianType region in walkableRegions)
 		{
@@ -40,13 +41,13 @@ public class Grid : MonoBehaviour
 	{
 		get
 		{
-			return gridSizeX * gridSizeY;
+			return gridSizeX * gridSizeZ;
 		}
 	}
 
 	void CreateGrid() 
 	{
-		grid = new Node[gridSizeX,gridSizeY];
+		grid = new Node[gridSizeX,gridSizeY,gridSizeZ];
 		Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.forward * gridWorldSize.y/2;
 
 		for (int x = 0; x < gridSizeX; x ++) 
