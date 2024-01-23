@@ -11,8 +11,8 @@ public class oxygenController : MonoBehaviour
 
     public string oxygenString;
     public TextMeshProUGUI oxygenText;
-    public TextMeshProUGUI oxygenText2;
-    public TextMeshProUGUI oxygenText3;
+    public TextMeshProUGUI winText;
+    public TextMeshProUGUI loseText;
 
     public bool isDead = false;
     public bool isWin = false;
@@ -29,12 +29,12 @@ public class oxygenController : MonoBehaviour
     {
         if (isDead)
         {
-            oxygenText3.gameObject.SetActive(true);
+            loseText.gameObject.SetActive(true);
             gameObject.SetActive(false);
         }
         else if (isWin)
         {
-            oxygenText2.gameObject.SetActive(true);
+            winText.gameObject.SetActive(true);
         }
     }
 
