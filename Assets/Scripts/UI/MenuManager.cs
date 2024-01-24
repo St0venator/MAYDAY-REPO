@@ -26,6 +26,9 @@ public class MenuManager : MonoBehaviour
         //Hide Pause Menu Assets
         PausePanel.SetActive(false);
         AudioSlider.gameObject.SetActive(false);
+
+        //Set the audio to the last saved slider value
+        SoundManager.ChangeVolume(AudioSlider.value);
     }
 
 
