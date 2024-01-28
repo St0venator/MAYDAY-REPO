@@ -1760,6 +1760,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 368786557}
     - target: {fileID: 7765105503616669669, guid: cf83c69312261f94eb61c2e76a26652a, type: 3}
+      propertyPath: aStar
+      value: 
+      objectReference: {fileID: 1032299798}
+    - target: {fileID: 7765105503616669669, guid: cf83c69312261f94eb61c2e76a26652a, type: 3}
       propertyPath: bulletTime
       value: 2
       objectReference: {fileID: 0}
@@ -2109,6 +2113,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029945462}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1032299798 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7125702647652236375, guid: 325dd7ee7ba67674585fc4f335963b6f, type: 3}
+  m_PrefabInstance: {fileID: 105472912}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1196335097
 GameObject:
   m_ObjectHideFlags: 0

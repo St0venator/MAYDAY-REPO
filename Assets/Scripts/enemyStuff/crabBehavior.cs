@@ -27,13 +27,13 @@ public class crabBehavior : MonoBehaviour
     //Reference to other objects
     [SerializeField] private MeshCollider wall;
     [SerializeField] private LayerMask player;
-
+    [SerializeField] private GameObject aStar;
     //Animation curve of the crabs attack
     [SerializeField] private AnimationCurve Jab;
 
     void Start()
     {
-        
+        GetComponent<Unit>().enabled = false;
     }
 
     void Update()
@@ -74,7 +74,7 @@ public class crabBehavior : MonoBehaviour
 
     void CrabChase()
     {
-
+        GetComponent<Unit>().enabled = true;   
     }
 
     void CrabAttack()
