@@ -27,13 +27,16 @@ public class crabBehavior : MonoBehaviour
     //Reference to other objects
     [SerializeField] private MeshCollider wall;
     [SerializeField] private LayerMask player;
-    [SerializeField] private GameObject aStar;
+    //[SerializeField] private GameObject aStar;
+    [SerializeField]private Pathfinding pathFinder;
+    
     //Animation curve of the crabs attack
     [SerializeField] private AnimationCurve Jab;
 
     void Start()
     {
         GetComponent<Unit>().enabled = false;
+        pathFinder.pausePath = false;
     }
 
     void Update()
@@ -75,6 +78,7 @@ public class crabBehavior : MonoBehaviour
     void CrabChase()
     {
         GetComponent<Unit>().enabled = true;   
+        pathFinder.pausePath = true;
     }
 
     void CrabAttack()

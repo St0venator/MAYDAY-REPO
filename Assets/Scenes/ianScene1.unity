@@ -1768,6 +1768,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7765105503616669669, guid: cf83c69312261f94eb61c2e76a26652a, type: 3}
+      propertyPath: pathFinder
+      value: 
+      objectReference: {fileID: 1032299799}
+    - target: {fileID: 7765105503616669669, guid: cf83c69312261f94eb61c2e76a26652a, type: 3}
       propertyPath: enemyBullet
       value: 
       objectReference: {fileID: 468778175742334909, guid: 4a7c4067a81bd7b40bc22d8169d0b550, type: 3}
@@ -2118,6 +2122,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7125702647652236375, guid: 325dd7ee7ba67674585fc4f335963b6f, type: 3}
   m_PrefabInstance: {fileID: 105472912}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1032299799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7125702647652236379, guid: 325dd7ee7ba67674585fc4f335963b6f, type: 3}
+  m_PrefabInstance: {fileID: 105472912}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032299798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3fcabc85ac3d6c4c896f4886651626a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1196335097
 GameObject:
   m_ObjectHideFlags: 0
