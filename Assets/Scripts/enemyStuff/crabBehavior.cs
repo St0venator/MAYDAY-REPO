@@ -72,7 +72,8 @@ public class crabBehavior : MonoBehaviour
 
     void CrabPatrol()
     {
-
+        GetComponent<Unit>().enabled = false;
+        pathFinder.pausePath = false;
     }
 
     void CrabChase()
