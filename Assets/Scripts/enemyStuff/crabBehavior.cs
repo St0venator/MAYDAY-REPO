@@ -107,7 +107,7 @@ public class crabBehavior : MonoBehaviour
             ~Need to be connected or on the wall
             ~Moves by finding ramdom points on the wall and going to them
             ~Checks to see if the player is in its radius of view
-        chasing
+        /DONE chasing
             ~Player is in Sight range
             ~Faces the player
             ~Movest towards the player
@@ -117,8 +117,10 @@ public class crabBehavior : MonoBehaviour
             ~stays slightly way from player with crabDistancing
             ~winds-up a claw
             ~jabs at players last loaction in the radius
+            ~If the platyer is hit, the player is moved back
             ~Checks to see if player is still in the attack radius
-        stunned
+
+        Maybe stunned
             ~Crab got "stunned" but player
             ~Crab turns around
             ~waits a few second

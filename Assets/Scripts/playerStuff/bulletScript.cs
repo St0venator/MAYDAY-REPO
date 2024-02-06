@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class bulletScript : MonoBehaviour
 {
+    public playerController player;
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            Destroy(other.gameObject);
+            //player.fall();
         }
     }
 }
