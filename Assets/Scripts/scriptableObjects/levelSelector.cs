@@ -15,9 +15,9 @@ public class levelSelector : ScriptableObject
         nextScene = allScenes[Random.Range(0, sceneNum - 1)];
     }
 
-    public void changeScenes()
+    public void changeScenes(MenuManager mngr)
     {
-        SceneManager.LoadScene(nextScene);
+        mngr.StartCoroutine("LoadAsynchronously", nextScene);
         allScenes.Remove(nextScene);
     }
 

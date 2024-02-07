@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    public levelSelector LS = null;
 
     //Load Screen Game Objects
     public GameObject loadingScene;
@@ -36,14 +37,14 @@ public class MenuManager : MonoBehaviour
     //This method will take an input of a scene name then take you to that scene
     public void ToScene(string scene)
     {
-        StartCoroutine(LoadAsynchronously(scene));
+        LS.changeScenes(this);
     }
     #endregion
 
 
     #region LoadingScreen Method
     //This scene can be called to pull up the loading screen while loading a scene called from the "ToScene" method
-    IEnumerator LoadAsynchronously(string scene)
+    public IEnumerator LoadAsynchronously(string scene)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
 

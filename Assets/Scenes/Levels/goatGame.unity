@@ -3642,6 +3642,10 @@ PrefabInstance:
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 9115979094187616014, guid: ea03cdb92f96fef44b99c815c991def2, type: 3}
+      propertyPath: currOxygen
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9115979094187616014, guid: ea03cdb92f96fef44b99c815c991def2, type: 3}
       propertyPath: oxygenText
       value: 
       objectReference: {fileID: 1577397719}

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class winCon : MonoBehaviour
@@ -21,7 +19,9 @@ public class winCon : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            LS.changeScenes();
+            MenuManager mngr = GameObject.Find("UIManager").GetComponent<MenuManager>();
+            LS.changeScenes(mngr);
+            Debug.Log("fuuuuuckkkk");
             //other.gameObject.GetComponent<oxygenController>().isWin = true;
         }
     }
