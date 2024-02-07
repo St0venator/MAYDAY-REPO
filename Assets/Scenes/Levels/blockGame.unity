@@ -1618,7 +1618,7 @@ Transform:
   - {fileID: 713835236}
   - {fileID: 559970128}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &770098734 stripped
 Transform:
@@ -2436,7 +2436,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1282441397
 GameObject:
@@ -4179,6 +4179,14 @@ PrefabInstance:
     - target: {fileID: 5025513861216303824, guid: ea03cdb92f96fef44b99c815c991def2, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9115979094187616014, guid: ea03cdb92f96fef44b99c815c991def2, type: 3}
+      propertyPath: winText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9115979094187616014, guid: ea03cdb92f96fef44b99c815c991def2, type: 3}
+      propertyPath: loseText
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9115979094187616014, guid: ea03cdb92f96fef44b99c815c991def2, type: 3}
       propertyPath: maxOxygen
