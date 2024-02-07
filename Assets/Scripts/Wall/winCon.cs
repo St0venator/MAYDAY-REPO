@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class winCon : MonoBehaviour
 {
+    public levelSelector LS;
     // Start is called before the first frame update
     void Start()
     {
-        
+        LS.setup();
     }
 
     // Update is called once per frame
@@ -20,7 +21,8 @@ public class winCon : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<oxygenController>().isWin = true;
+            LS.changeScenes();
+            //other.gameObject.GetComponent<oxygenController>().isWin = true;
         }
     }
 }
