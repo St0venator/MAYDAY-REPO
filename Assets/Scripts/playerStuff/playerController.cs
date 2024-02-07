@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject worldCursor;
     [SerializeField] GameObject childObj;
     [SerializeField] GameObject bulletRef;
+    public LayerMask mask;
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +77,34 @@ public class playerController : MonoBehaviour
                 StartCoroutine(fall(worldCursor.transform.position, climbSpeed));
             }
             
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Anchor"))
+        {
+            Vector3 currPos = transform.position;
+
+            Vector3 newPos = currPos;
+
+            newPos -= new Vector3(0, 30);
+
+            
+
+            Ray zRay = new Ray(newPos, new Vector3(0, 0, 1));
+
+            if (Physics.Raycast(zRay, out RaycastHit zHit, float.MaxValue, mask))
+            {
+                newPos.z = zHit.point.z;
+                Debug.Log(currPos.x + " " + currPos.y + " " + currPos.z);
+                Debug.Log(newPos.x + " " + newPos.y + " " + newPos.z);
+
+                StopAllCoroutines();
+                StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
+            }
+
+            Destroy(other.gameObject);
         }
     }
 
@@ -157,8 +187,9 @@ public class playerController : MonoBehaviour
         
     }
 
-    public IEnumerator fall(Vector3 dest, float speed)
+    public IEnumerator fall(Vector3 dest, float speed = 25, bool isPlayerJump = true)
     {
+        Debug.Log("in the fall");
         /*
          * dest  - The transform.position of the node we're climbing to
          * speed - The amount we move along the x-axis of our animation curve each loop of the coroutine
@@ -176,7 +207,8 @@ public class playerController : MonoBehaviour
 
         Vector3 destDist = dest - startPos;
 
-        if (destDist.magnitude > 10)
+        
+        if (destDist.magnitude > 10 && isPlayerJump)
         {
             destDist = destDist.normalized * 10;
 
@@ -199,7 +231,7 @@ public class playerController : MonoBehaviour
         //LERPing towards "dest" until we reach x = 1.1 on our animation curve
         while (pos < 1)
         {
-
+            Debug.Log("falling");
             //Moving n% of the way between our start and end positions, with n being the y-value of our animation curve at x = "pos"
             transform.position = Vector3.Slerp(newStart, newDest, fallCurve.Evaluate(pos)) + midPoint;
             pos = Mathf.MoveTowards(pos, 1.0f, speed * Time.deltaTime * 3);
@@ -213,6 +245,7 @@ public class playerController : MonoBehaviour
 
             if (pos > 0.4f)
             {
+                Debug.Log("fallOver");
                 canJump = true;
             }
 
