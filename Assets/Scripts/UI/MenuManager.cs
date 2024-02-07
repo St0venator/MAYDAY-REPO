@@ -89,6 +89,7 @@ public class MenuManager : MonoBehaviour
     public void GetAudioSliderValue()
     {
         SoundManager.ChangeVolume(AudioSlider.value);
+        Debug.Log("Volume Changed");
     }
 
 
