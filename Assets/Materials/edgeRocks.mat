@@ -75,8 +75,8 @@ Material:
     - _var1: 0
     - _var2: 1
     m_Colors:
-    - _rockColor1: {r: 0, g: 0.1509434, b: 0.14088051, a: 0}
-    - _rockColor2: {r: 0, g: 0.3193499, b: 0.5372549, a: 0}
+    - _rockColor1: {r: 0.0014239977, g: 0.19619976, b: 0.3018868, a: 0}
+    - _rockColor2: {r: 0.22899605, g: 0.23005743, b: 0.5849056, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3783563644213533343
 MonoBehaviour:
