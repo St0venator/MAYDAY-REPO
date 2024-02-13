@@ -107,30 +107,37 @@ public class playerController : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        /*if (other.gameObject.CompareTag("NavalMine"))
+        if (other.gameObject.CompareTag("NavalMine"))
         {
-            Vector3 cPosition = transform.position;
-            Vector3 nPosition = cPosition;
-            if(cPosition.x >= 0)
+            Debug.Log("Hi");
+            Vector3 currPos = transform.position;
+
+            Vector3 newPos = currPos;
+
+            newPos -= new Vector3(0, 30);
+
+            Ray mRay = new Ray(newPos, new Vector3(0, 0, 1));
+            Debug.Log("bye");
+
+            if (Physics.Raycast(mRay, out RaycastHit mHit, float.MaxValue, mask))
             {
-                nPosition -= new Vector3(15, 40);
+                Debug.Log("Fuck this");
+                newPos.y = mHit.point.y;
+
+                StopAllCoroutines();
+                StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
             }
             else
             {
-                nPosition -= new Vector3(-15, 40);
-            }
-            Ray pRay = new Ray(nPosition, new Vector3(0, 0, 1));
+                Debug.Log("Fuck this part 2");
+                newPos.y = mHit.point.y;
 
-            if(Physics.Raycast(pRay, out RaycastHit pHit, float.MaxValue, mask))
-            {
-                nPosition.z = pHit.point.z;
-                Debug.Log(currPos.x + " " + currPos.y + " " + currPos.z);
-                Debug.Log(newPos.x + " " + newPos.y + " " + newPos.z);
                 StopAllCoroutines();
-                StartCoroutine(fall(nPosition, climbSpeed * 1.5f, false));
+                StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
             }
             Destroy(other.gameObject);
-        }*/
+            Debug.Log("Why");
+        }
     }
 
     public IEnumerator climb(Vector3 dest, float speed)
