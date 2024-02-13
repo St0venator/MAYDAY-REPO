@@ -6,10 +6,11 @@ using UnityEngine.UI;
 public class rockController : MonoBehaviour
 {
     public LayerMask mask;
-    public Rigidbody rb;
+    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         rb.drag = Random.Range(0f, 0.2f);
     }
 
@@ -23,6 +24,8 @@ public class rockController : MonoBehaviour
             
             transform.position = new Vector3(transform.position.x, transform.position.y, zHit.point.z - 5);
         }
+
+        transform.Rotate(transform.right, -1);
     }
 
     private void FixedUpdate()
