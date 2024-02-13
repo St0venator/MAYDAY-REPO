@@ -109,7 +109,6 @@ public class playerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("NavalMine"))
         {
-            Debug.Log("Hi");
             Vector3 currPos = transform.position;
 
             Vector3 newPos = currPos;
@@ -117,11 +116,9 @@ public class playerController : MonoBehaviour
             newPos -= new Vector3(0, 30);
 
             Ray mRay = new Ray(newPos, new Vector3(0, 0, 1));
-            Debug.Log("bye");
 
             if (Physics.Raycast(mRay, out RaycastHit mHit, float.MaxValue, mask))
             {
-                Debug.Log("Fuck this");
                 newPos.y = mHit.point.y;
 
                 StopAllCoroutines();
@@ -129,14 +126,12 @@ public class playerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Fuck this part 2");
                 newPos.y = mHit.point.y;
 
                 StopAllCoroutines();
                 StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
             }
             Destroy(other.gameObject);
-            Debug.Log("Why");
         }
     }
 
