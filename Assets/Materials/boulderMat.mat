@@ -62,7 +62,7 @@ Material:
     - _QueueOffset: 0
     - _rockStepEdge1: 0.627
     - _rockStepEdge2: 1
-    - _tiling: 35.34
+    - _tiling: 5
     - _var2: 1
     m_Colors:
     - _rockColor1: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0}
