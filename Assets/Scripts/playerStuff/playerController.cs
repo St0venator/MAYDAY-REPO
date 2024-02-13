@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
-    // Getting a referance to the sound manager
+    // Getting a reference to the sound manager
     [SerializeField]public SoundManager SoundManager;
 
     //The animation curves the player follows when they jump from one node to another
@@ -25,15 +25,17 @@ public class playerController : MonoBehaviour
 
     //References
     Rigidbody rb;
+    Animator anim;
     [SerializeField] GameObject worldCursor;
     [SerializeField] GameObject childObj;
     [SerializeField] GameObject bulletRef;
     public LayerMask mask;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         climbSpeed /= 100f;
     }
@@ -43,7 +45,7 @@ public class playerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Debug.Log("doing the input");
+            
             isSlash = true;
         }
 
@@ -58,6 +60,7 @@ public class playerController : MonoBehaviour
         //If the player hits Left Shift, stop all current climb coroutines, and start a new one targeting the node the cursor is selecting
         if (Input.GetMouseButtonDown(1) && canJump) 
         {
+
             StopAllCoroutines();
             if(isSlash){
                     SoundManager.PlaySwordSFX();//Plays sword SFX when moving
@@ -68,12 +71,17 @@ public class playerController : MonoBehaviour
             //If the current node is above the player, climbing
             if (worldCursor.transform.position.y >= transform.position.y)
             {
-                
+                anim.SetBool("Jumped", true);
+                anim.SetBool("IsMidair", true);
+                anim.SetBool("IsGrounded", false);
                 StartCoroutine(climb(worldCursor.transform.position, climbSpeed));
             }
             //Otherwise, fall
             else
             {
+                anim.SetBool("Jumped", true);
+                anim.SetBool("IsMidair", true);
+                anim.SetBool("IsGrounded", false);
                 StartCoroutine(fall(worldCursor.transform.position, climbSpeed));
             }
             
@@ -127,7 +135,7 @@ public class playerController : MonoBehaviour
 
         Vector3 destDist = dest - startPos;
 
-        GetComponent<oxygenController>().reduceOxygen(Mathf.Abs(destDist.magnitude));
+        //GetComponent<oxygenController>().reduceOxygen(Mathf.Abs(destDist.magnitude));
 
         if(destDist.magnitude > 10)
         {
@@ -173,11 +181,18 @@ public class playerController : MonoBehaviour
             if (pos > 0.4f && !isSlash)
             {
                 canJump = true;
-                
+                anim.SetBool("Jumped", false);
+                anim.SetBool("IsMidair", false);
+                anim.SetBool("IsGrounded", true);
+                anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
             }
             else if(pos > 0.6f)
             {
                 canJump = true;
+                anim.SetBool("Jumped", false);
+                anim.SetBool("IsMidair", false);
+                anim.SetBool("IsGrounded", true);
+                anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
             }
 
             yield return null;
@@ -247,6 +262,10 @@ public class playerController : MonoBehaviour
             {
                 Debug.Log("fallOver");
                 canJump = true;
+                anim.SetBool("Jumped", false);
+                anim.SetBool("IsMidair", false);
+                anim.SetBool("IsGrounded", true);
+                anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
             }
 
             yield return null;
