@@ -55,22 +55,22 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 1
+    - _Alpha: 0.149
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _Floor: 1.15
+    - _Floor: 2.97
     - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0
-    - _fresnelMax: 1
-    - _fresnelMin: 0
-    - _fresnelPower: 0.89
+    - _fresnelMax: 0
+    - _fresnelMin: 1
+    - _fresnelPower: 0.63
     - _noiseScale: 1
     - _speed1: 0.2
     - _speed2: 0.3
-    - _tiling1: 1.25
-    - _tiling2: 0.75
+    - _tiling1: 0.9
+    - _tiling2: 1.1
     m_Colors:
     - _Color1: {r: 0, g: 0.419116, b: 0.81960785, a: 0}
     - _Color2: {r: 0.01612091, g: 0, b: 1, a: 0}

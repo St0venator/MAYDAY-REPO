@@ -35,3 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/yknow.unity
     guid: 36614b4fe898b6e4e8fb7cf8403e365b
+  - enabled: 1
+    path: Assets/Scenes/BGScene.unity
+    guid: 8605204aecc12c942922a6e1189f5d80
+  m_configObjects: {}
