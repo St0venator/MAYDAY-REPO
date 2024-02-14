@@ -6,6 +6,7 @@ public class objResetter : MonoBehaviour
 {
     public levelSelector LS;
     public levelSelector DLS;
+    public oxygenManager OXY;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,5 +23,6 @@ public class objResetter : MonoBehaviour
     {
         LS.allScenes = DLS.allScenes;
         LS.setup();
+        OXY.resetOxygen();
     }
 }

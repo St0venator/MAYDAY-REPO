@@ -3,6 +3,7 @@ using UnityEngine;
 public class winCon : MonoBehaviour
 {
     public levelSelector LS;
+    public oxygenManager OXY;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +22,7 @@ public class winCon : MonoBehaviour
         {
             MenuManager mngr = GameObject.Find("UIManager").GetComponent<MenuManager>();
             LS.changeScenes(mngr);
-            Debug.Log("fuuuuuckkkk");
-            //other.gameObject.GetComponent<oxygenController>().isWin = true;
+            OXY.oxygenIncrement();
         }
     }
 }

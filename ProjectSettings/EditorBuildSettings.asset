@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MineParticleTest.unity
     guid: 109902c873ba1d146a7b55b7d14c4d60
+  - enabled: 1
+    path: Assets/Scenes/LoseScene.unity
+    guid: e489af814fdef0744b3d05629b74d835
   m_configObjects: {}

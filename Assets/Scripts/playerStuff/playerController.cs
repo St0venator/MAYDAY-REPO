@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,6 +35,8 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject worldCursor;
     [SerializeField] GameObject childObj;
     [SerializeField] GameObject bulletRef;
+    [SerializeField] TextMeshProUGUI oxygenText;
+    [SerializeField] oxygenManager OXY;
     public LayerMask mask;
     
 
@@ -48,6 +51,15 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        OXY.oxygenDecrement(Time.deltaTime);
+        oxygenText.text = "Oxygen: " + OXY.displayOxygen();
+
+        if(OXY.oxygenAmnt < 0.5f)
+        {
+            MenuManager mngr = GameObject.Find("UIManager").GetComponent<MenuManager>();
+            mngr.StartCoroutine("LoadAsynchronously", "LoseScene");
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             

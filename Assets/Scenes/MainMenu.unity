@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 195764396}
   - component: {fileID: 195764395}
   - component: {fileID: 195764394}
+  - component: {fileID: 195764397}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -359,6 +360,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &195764397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195764393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &428710331
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,6 +776,18 @@ MonoBehaviour:
           m_StringArgument: MineParticleTest
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 701589448}
+        m_TargetAssemblyTypeName: objResetter, Assembly-CSharp
+        m_MethodName: resetList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &701589445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,7 +860,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LS: {fileID: 11400000, guid: deefccbe3da94e743b9f5f3b65883e47, type: 2}
-  DLS: {fileID: 11400000, guid: 8c30f54513073ce4a85a881043b85631, type: 2}
+  DLS: {fileID: 11400000, guid: 04569b86b4e6ce445870041592213ef4, type: 2}
+  OXY: {fileID: 11400000, guid: dcb38d75d4601824298ca8af683ca54e, type: 2}
 --- !u!1 &946180825
 GameObject:
   m_ObjectHideFlags: 0
