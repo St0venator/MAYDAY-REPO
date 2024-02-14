@@ -7,6 +7,8 @@ public class playerController : MonoBehaviour
 {
     //Particles
     public ParticleSystem jumpLand;
+    public ParticleSystem explosion;
+    public bool isExploded = false;
 
     // Getting a reference to the sound manager
     [SerializeField]public SoundManager SoundManager;
@@ -114,17 +116,19 @@ public class playerController : MonoBehaviour
                 StopAllCoroutines();
                 StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
             }
-
             Destroy(other.gameObject);
         }
 
         if (other.gameObject.CompareTag("NavalMine"))
         {
+            isExploded = true;
+            Debug.Log(isExploded);
+
             Vector3 currPos = transform.position;
 
             Vector3 newPos = currPos;
 
-            newPos -= new Vector3(0, 30);
+            newPos -= new Vector3(0, 25);
 
             Ray mRay = new Ray(newPos, new Vector3(0, 0, 1));
 
@@ -138,11 +142,11 @@ public class playerController : MonoBehaviour
             else
             {
                 newPos.y = mHit.point.y;
-
                 StopAllCoroutines();
                 StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
             }
             Destroy(other.gameObject);
+            explosion.Play();
         }
     }
 
