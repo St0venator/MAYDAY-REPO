@@ -114,6 +114,33 @@ public class playerController : MonoBehaviour
 
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.CompareTag("NavalMine"))
+        {
+            Vector3 currPos = transform.position;
+
+            Vector3 newPos = currPos;
+
+            newPos -= new Vector3(0, 30);
+
+            Ray mRay = new Ray(newPos, new Vector3(0, 0, 1));
+
+            if (Physics.Raycast(mRay, out RaycastHit mHit, float.MaxValue, mask))
+            {
+                newPos.y = mHit.point.y;
+
+                StopAllCoroutines();
+                StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
+            }
+            else
+            {
+                newPos.y = mHit.point.y;
+
+                StopAllCoroutines();
+                StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
+            }
+            Destroy(other.gameObject);
+        }
     }
 
     public IEnumerator climb(Vector3 dest, float speed)
