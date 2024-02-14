@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
+    //Particles
+    public ParticleSystem jumpLand;
+
     // Getting a reference to the sound manager
     [SerializeField]public SoundManager SoundManager;
 
@@ -63,7 +66,7 @@ public class playerController : MonoBehaviour
 
             StopAllCoroutines();
             if(isSlash){
-                    SoundManager.PlaySwordSFX();//Plays sword SFX when moving
+                    SoundManager.PlaySwordSFX();//Plays sword SFX when moving                  
             }
             else{
                 SoundManager.PlayJumpSound();//Plays jump SFX when moving
@@ -130,6 +133,8 @@ public class playerController : MonoBehaviour
         Vector3 startPos = transform.position;
         canJump = false;
 
+        jumpLand.Play();
+
         //Keeping the player in front of the wall, from the camera's POV by moving the player slightly closer to the camera
         dest = Vector3.MoveTowards(dest, Camera.main.transform.position, 0.1f);
 
@@ -193,6 +198,7 @@ public class playerController : MonoBehaviour
                 anim.SetBool("IsMidair", false);
                 anim.SetBool("IsGrounded", true);
                 anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
+                jumpLand.Stop(); // Particle End
             }
 
             yield return null;
@@ -216,6 +222,8 @@ public class playerController : MonoBehaviour
         float pos = 0.0f;
         Vector3 startPos = transform.position;
         canJump = false;
+
+        jumpLand.Play(); // Particles play
 
         //Keeping the player in front of the wall, from the camera's POV by moving the player slightly closer to the camera
         dest = Vector3.MoveTowards(dest, Camera.main.transform.position, 0.1f);
@@ -266,6 +274,7 @@ public class playerController : MonoBehaviour
                 anim.SetBool("IsMidair", false);
                 anim.SetBool("IsGrounded", true);
                 anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
+                jumpLand.Stop(); // Particles
             }
 
             yield return null;
