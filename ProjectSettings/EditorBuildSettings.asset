@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BGScene.unity
     guid: 8605204aecc12c942922a6e1189f5d80
+  - enabled: 1
+    path: Assets/Scenes/MineParticleTest.unity
+    guid: 109902c873ba1d146a7b55b7d14c4d60
   m_configObjects: {}

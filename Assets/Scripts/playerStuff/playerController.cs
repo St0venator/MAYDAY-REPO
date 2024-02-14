@@ -116,7 +116,7 @@ public class playerController : MonoBehaviour
                 StopAllCoroutines();
                 StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
             }
-            Destroy(other.gameObject);
+            Destroy(other.gameObject, 1.5f);
         }
 
         if (other.gameObject.CompareTag("NavalMine"))
