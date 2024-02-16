@@ -28,6 +28,7 @@ public class playerController : MonoBehaviour
     //Bool controlling when the player is using the sword or jumping at all
     bool isSlash = false;
     bool isJump = false;
+    bool isSlowed = false;
 
     //References
     Rigidbody rb;
@@ -107,6 +108,10 @@ public class playerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Whirlpool"))
+        {
+            isSlowed = true;
+        }
         if (other.gameObject.CompareTag("Anchor"))
         {
             Vector3 currPos = transform.position;
@@ -162,6 +167,14 @@ public class playerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Whirlpool"))
+        {
+            isSlowed = false;
+        }
+    }
+
     public IEnumerator climb(Vector3 dest, float speed)
     {
         /*
@@ -188,7 +201,17 @@ public class playerController : MonoBehaviour
 
         if(destDist.magnitude > 10)
         {
-            destDist = destDist.normalized * 10;
+
+            if (isSlowed)
+            {
+                destDist = destDist.normalized * 6.6f;
+                speed *= 0.66f;
+            }
+            else
+            {
+                destDist = destDist.normalized * 10;
+            }
+            
 
             dest = startPos + destDist;
 
@@ -277,7 +300,15 @@ public class playerController : MonoBehaviour
         
         if (destDist.magnitude > 10 && isPlayerJump)
         {
-            destDist = destDist.normalized * 10;
+            if (isSlowed)
+            {
+                destDist = destDist.normalized * 6.6f;
+                speed *= 0.66f;
+            }
+            else
+            {
+                destDist = destDist.normalized * 10;
+            }
 
             dest = startPos + destDist;
 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1089454489332280612}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: avalanche
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 9149505559389171604}
   - component: {fileID: 9149505559389171605}
   - component: {fileID: 9149505559389171608}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: rock1
   m_TagString: Anchor
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 9149505559767587583}
   - component: {fileID: 9149505559767587580}
   - component: {fileID: 9149505559767587581}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: rock1 (5)
   m_TagString: Anchor
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 9149505559956398603}
   - component: {fileID: 9149505559956398600}
   - component: {fileID: 9149505559956398601}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: rock1 (4)
   m_TagString: Anchor
   m_Icon: {fileID: 0}
@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 9149505559978783083}
   - component: {fileID: 9149505559978783080}
   - component: {fileID: 9149505559978783081}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: rock1 (6)
   m_TagString: Anchor
   m_Icon: {fileID: 0}
@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: 9149505560575363103}
   - component: {fileID: 9149505560575363100}
   - component: {fileID: 9149505560575363101}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: rock1 (7)
   m_TagString: Anchor
   m_Icon: {fileID: 0}
@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 9149505560877168747}
   - component: {fileID: 9149505560877168744}
   - component: {fileID: 9149505560877168745}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: rock1 (2)
   m_TagString: Anchor
   m_Icon: {fileID: 0}
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 9149505560890556536}
   - component: {fileID: 9149505560890556537}
   - component: {fileID: 9149505560890556534}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: rock1 (3)
   m_TagString: Anchor
   m_Icon: {fileID: 0}
@@ -970,7 +970,7 @@ GameObject:
   - component: {fileID: 9149505561325378873}
   - component: {fileID: 9149505561325378870}
   - component: {fileID: 9149505561325378871}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: rock1 (1)
   m_TagString: Anchor
   m_Icon: {fileID: 0}

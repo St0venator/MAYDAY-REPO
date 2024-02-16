@@ -53,11 +53,11 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _overallAlpha: 0
-    - _rotateSpeed: 1
-    - _shearAmnt: 10
+    - _overallAlpha: 0.223
+    - _rotateSpeed: 2
+    - _shearAmnt: 9.32
     m_Colors:
     - _darkColor: {r: 0, g: 0, b: 1, a: 0}
     - _lightColor: {r: 0, g: 1, b: 1, a: 0}
-    - _shearRange: {r: 0.25, g: 0.75, b: 0, a: 0}
+    - _shearRange: {r: 0.1, g: 0.9, b: 0, a: 0}
   m_BuildTextureStacks: []
