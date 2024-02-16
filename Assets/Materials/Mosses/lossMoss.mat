@@ -49,8 +49,9 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _mossPos: 0
-    - _mossSize: 0.08
+    - _mossIntensity: 2
+    - _mossPos: -3.57
+    - _mossSize: 0.1
     m_Colors:
-    - _mossColor: {r: 0.6516854, g: 1, b: 0, a: 0}
+    - _mossColor: {r: 0.7204094, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -55,7 +55,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.092
+    - _Alpha: 0.22
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _Floor: 1.79
@@ -72,8 +72,8 @@ Material:
     - _tiling1: 1
     - _tiling2: 0.51
     m_Colors:
-    - _Color1: {r: 0, g: 0.419116, b: 0.81960785, a: 0}
-    - _Color2: {r: 0.01612091, g: 0, b: 1, a: 0}
+    - _Color1: {r: 0, g: 0.051387683, b: 0.81960785, a: 0}
+    - _Color2: {r: 0, g: 0.099, b: 1, a: 0}
     - _dir1: {r: 1, g: 1, b: 0, a: 0}
     - _dir2: {r: -1, g: -1, b: 0, a: 0}
   m_BuildTextureStacks: []
