@@ -12,7 +12,15 @@ public class levelSelector : ScriptableObject
     public void setup()
     {
         sceneNum = allScenes.Count;
-        nextScene = allScenes[Random.Range(0, sceneNum - 1)];
+
+        if(sceneNum != 0)
+        {
+            nextScene = allScenes[Random.Range(0, sceneNum - 1)];
+        }
+        else
+        {
+            nextScene = "WinScene";
+        }
     }
 
     public void changeScenes(MenuManager mngr)

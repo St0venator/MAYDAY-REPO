@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mossMat
+  m_Name: levelMoss
   m_Shader: {fileID: -6465566751694194690, guid: 0f5c1bef1da032d48b546e72e85d52ad, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -49,6 +49,8 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _mossPos: 0
+    - _mossSize: 1
     m_Colors:
     - _mossColor: {r: 0.6516854, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
