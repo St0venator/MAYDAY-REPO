@@ -14,7 +14,7 @@ public class whirlpoolController : MonoBehaviour
     {
         originScale = transform.localScale;
 
-        float randScale = Random.Range(1.1f, 1.3f);
+        float randScale = Random.Range(1.5f, 2f);
         targetScale = transform.localScale * randScale;
     }
 
