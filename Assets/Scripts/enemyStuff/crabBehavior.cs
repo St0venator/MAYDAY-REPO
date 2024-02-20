@@ -23,6 +23,10 @@ public class crabBehavior : MonoBehaviour
     bool isCrabStunned = false;
     [SerializeField] private bool inAttackRange, inSightRange, inGround;
 
+    //patrol variables
+    /*private float walkPointRange;
+    private Vector3 walkPoint;
+    bool walkPointSet;*/
 
     //Reference to other objects
     [SerializeField] private MeshCollider wall;
@@ -72,6 +76,7 @@ public class crabBehavior : MonoBehaviour
 
     void CrabPatrol()
     {
+
         GetComponent<Unit>().enabled = false;
         pathFinder.pausePath = false;
     }
