@@ -10,23 +10,23 @@ public class crabBehavior : MonoBehaviour
     [SerializeField] private SphereCollider weakSpot;
 
     //attributes of the crab
-    [SerializeField] private float carbSpeed;
-    [SerializeField] private float crabDistancing;
-    [SerializeField] private float crabSightRange;
-    [SerializeField] private float crabAttackRange;
-    [SerializeField] private float stunTime;
-    [SerializeField] private float timer = 5;
-    [SerializeField] private float bulletTime;
+    private float carbSpeed = 15f;
+    private float crabDistancing = 7f;
+    private float crabSightRange = 50f;
+    private float crabAttackRange = 9f;
+    private float stunTime = 5f;
+    private float timer = 5f;
+    private float bulletTime = 2f;
     public GameObject enemyBullet;
     public GameObject shootingPos;
     //bool alreadyAttacked = false;
     bool isCrabStunned = false;
-    [SerializeField] private bool inAttackRange, inSightRange, inGround;
+    public bool inAttackRange, inSightRange, inGround;
 
     //patrol variables
-    /*private float walkPointRange;
-    private Vector3 walkPoint;
-    bool walkPointSet;*/
+    [SerializeField]private Vector3 walkPoint;
+    [SerializeField]private Vector3 walkPoint1;
+    [SerializeField]private Vector3 walkPoint2;
 
     //Reference to other objects
     [SerializeField] private MeshCollider wall;
@@ -76,13 +76,14 @@ public class crabBehavior : MonoBehaviour
 
     void CrabPatrol()
     {
-
+        StartCoroutine("StartWalking");
         GetComponent<Unit>().enabled = false;
         pathFinder.pausePath = false;
     }
 
     void CrabChase()
     {
+        StopAllCoroutines();
         GetComponent<Unit>().enabled = true;   
         pathFinder.pausePath = true;
     }
@@ -101,6 +102,30 @@ public class crabBehavior : MonoBehaviour
     void CrabStunned()
     {
 
+    }
+
+    IEnumerator StartWalking()
+    {
+        var walkPoint1 = transform.position;
+        yield return StartCoroutine(MoveObject(transform, walkPoint1, walkPoint2, 3.0f));
+        yield return StartCoroutine(MoveObject(transform, walkPoint2, walkPoint, 3.0f));
+        while(true)
+        {
+            yield return StartCoroutine(MoveObject(transform, walkPoint, walkPoint2, 3.0f));
+            yield return StartCoroutine(MoveObject(transform, walkPoint2, walkPoint, 3.0f));
+        } 
+    }
+
+    IEnumerator MoveObject(Transform thisTransform, Vector3 startPos, Vector3 endPos, float time)
+    {
+        var i= 0.0f;
+        var rate= 1.0f/time;
+        while(i < 1.0f)
+        {
+            i += Time.deltaTime * rate;
+            thisTransform.position = Vector3.Lerp(startPos, endPos, i);
+            yield return null;
+        }
     }
 }
 
