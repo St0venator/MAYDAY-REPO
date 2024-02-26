@@ -133,6 +133,7 @@ public class playerController : MonoBehaviour
                 StopAllCoroutines();
                 StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
             }
+            other.GetComponent<BoxCollider>().enabled = false;
             Destroy(other.gameObject, 1.5f);
         }
 
