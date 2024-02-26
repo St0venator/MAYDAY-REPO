@@ -16,13 +16,56 @@ public class enemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnMine(); 
+        spawnStationary();
+        StartCoroutine(spawnRandom());
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    IEnumerator spawnRandom()
+    {
+        while(true) 
+        {
+            int randOdds = Random.Range(0, 101);
+
+            if(randOdds >= 90)
+            {
+                int randChoice = Random.Range(0, 2);
+
+                if(randChoice == 0)
+                {
+                    spawnAnchor();
+                }
+                else if(randChoice == 1)
+                {
+                    spawnAvalanche();
+                }
+            }
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    void spawnStationary()
+    {
+        int spawnNum = Random.Range(1, 4);
+
+        for(int i = 0; i < spawnNum; i++)
+        {
+            int randObj = Random.Range(0, 2);
+
+            if(randObj == 0)
+            {
+                spawnMine();
+            }
+            else if(randObj == 1)
+            {
+                spawnWhirlpool();
+            }
+        }
     }
 
     void spawnMine()
