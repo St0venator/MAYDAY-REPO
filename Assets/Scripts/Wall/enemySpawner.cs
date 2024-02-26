@@ -8,16 +8,27 @@ public class enemySpawner : MonoBehaviour
     [SerializeField] float yPos;
     [SerializeField] float zPos;
     [SerializeField] GameObject anchor;
+    [SerializeField] GameObject whirlpool;
     // Start is called before the first frame update
     void Start()
     {
-        spawnAnchor();
+        spawnWhirlpool();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void spawnWhirlpool()
+    {
+        float spawnX = Random.Range(-100, 100);
+        float spawnY = Random.Range(0, 100);
+
+        Vector3 spawnPos = new Vector3(spawnX, spawnY, zPos);
+
+        Instantiate(whirlpool, spawnPos, Quaternion.identity);
     }
 
     void spawnAnchor()
