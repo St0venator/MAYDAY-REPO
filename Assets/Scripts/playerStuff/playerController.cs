@@ -53,7 +53,7 @@ public class playerController : MonoBehaviour
     void Update()
     {
         OXY.oxygenDecrement(Time.deltaTime);
-        oxygenText.text = "Oxygen: " + OXY.displayOxygen();
+        //oxygenText.text = "Oxygen: " + OXY.displayOxygen();
 
         if(OXY.oxygenAmnt < 0.5f)
         {
