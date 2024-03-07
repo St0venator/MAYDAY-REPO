@@ -10,30 +10,37 @@ public class crabBehavior : MonoBehaviour
     [SerializeField] private SphereCollider weakSpot;
 
     //attributes of the crab
-    [SerializeField] private float carbSpeed;
-    [SerializeField] private float crabDistancing;
-    [SerializeField] private float crabSightRange;
-    [SerializeField] private float crabAttackRange;
-    [SerializeField] private float stunTime;
-    [SerializeField] private float timer = 5;
-    [SerializeField] private float bulletTime;
+    private float carbSpeed = 15f;
+    private float crabDistancing = 7f;
+    private float crabSightRange = 50f;
+    private float crabAttackRange = 9f;
+    private float stunTime = 5f;
+    private float timer = 5f;
+    private float bulletTime = 2f;
     public GameObject enemyBullet;
     public GameObject shootingPos;
     //bool alreadyAttacked = false;
     bool isCrabStunned = false;
-    [SerializeField] private bool inAttackRange, inSightRange, inGround;
+    public bool inAttackRange, inSightRange, inGround;
 
+    //patrol variables
+    [SerializeField]private Vector3 walkPoint;
+    [SerializeField]private Vector3 walkPoint1;
+    [SerializeField]private Vector3 walkPoint2;
 
     //Reference to other objects
     [SerializeField] private MeshCollider wall;
     [SerializeField] private LayerMask player;
-
+    //[SerializeField] private GameObject aStar;
+    [SerializeField]private Pathfinding pathFinder;
+    
     //Animation curve of the crabs attack
     [SerializeField] private AnimationCurve Jab;
 
     void Start()
     {
-        
+        GetComponent<Unit>().enabled = false;
+        pathFinder.pausePath = false;
     }
 
     void Update()
@@ -69,12 +76,16 @@ public class crabBehavior : MonoBehaviour
 
     void CrabPatrol()
     {
-
+        StartCoroutine("StartWalking");
+        GetComponent<Unit>().enabled = false;
+        pathFinder.pausePath = false;
     }
 
     void CrabChase()
     {
-
+        StopAllCoroutines();
+        GetComponent<Unit>().enabled = true;   
+        pathFinder.pausePath = true;
     }
 
     void CrabAttack()
@@ -92,6 +103,30 @@ public class crabBehavior : MonoBehaviour
     {
 
     }
+
+    IEnumerator StartWalking()
+    {
+        var walkPoint1 = transform.position;
+        yield return StartCoroutine(MoveObject(transform, walkPoint1, walkPoint2, 3.0f));
+        yield return StartCoroutine(MoveObject(transform, walkPoint2, walkPoint, 3.0f));
+        while(true)
+        {
+            yield return StartCoroutine(MoveObject(transform, walkPoint, walkPoint2, 3.0f));
+            yield return StartCoroutine(MoveObject(transform, walkPoint2, walkPoint, 3.0f));
+        } 
+    }
+
+    IEnumerator MoveObject(Transform thisTransform, Vector3 startPos, Vector3 endPos, float time)
+    {
+        var i= 0.0f;
+        var rate= 1.0f/time;
+        while(i < 1.0f)
+        {
+            i += Time.deltaTime * rate;
+            thisTransform.position = Vector3.Lerp(startPos, endPos, i);
+            yield return null;
+        }
+    }
 }
 
 /*
@@ -102,7 +137,7 @@ public class crabBehavior : MonoBehaviour
             ~Need to be connected or on the wall
             ~Moves by finding ramdom points on the wall and going to them
             ~Checks to see if the player is in its radius of view
-        chasing
+        /DONE chasing
             ~Player is in Sight range
             ~Faces the player
             ~Movest towards the player
@@ -112,8 +147,10 @@ public class crabBehavior : MonoBehaviour
             ~stays slightly way from player with crabDistancing
             ~winds-up a claw
             ~jabs at players last loaction in the radius
+            ~If the platyer is hit, the player is moved back
             ~Checks to see if player is still in the attack radius
-        stunned
+
+        Maybe stunned
             ~Crab got "stunned" but player
             ~Crab turns around
             ~waits a few second

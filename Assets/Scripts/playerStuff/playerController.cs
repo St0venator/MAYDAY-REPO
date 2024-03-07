@@ -41,6 +41,10 @@ public class playerController : MonoBehaviour
     public LayerMask mask;
     
 
+    //variables for stunning player
+    [HideInInspector] public bool isStunned;
+    private float stunTimer = 3.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +56,20 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isStunned)
+        {
+            if (stunTimer <= 0)
+            {
+                isStunned = false;
+                stunTimer = 3.0f;
+                
+            }
+            else
+            {
+                stunTimer -= Time.deltaTime;
+                Debug.Log(stunTimer);
+            }
+            Debug.Log(isStunned);
         OXY.oxygenDecrement(Time.deltaTime);
         oxygenText.text = "Oxygen: " + OXY.displayOxygen();
 
@@ -74,9 +92,7 @@ public class playerController : MonoBehaviour
             bullet.GetComponent<bulletController>().velocity = (worldCursor.transform.position - transform.position).normalized * 10;
             SoundManager.PlayShootSFX();
         }
-
-        //If the player hits Left Shift, stop all current climb coroutines, and start a new one targeting the node the cursor is selecting
-        if (Input.GetMouseButtonDown(1) && canJump) 
+        else
         {
 
             StopAllCoroutines();
@@ -86,23 +102,45 @@ public class playerController : MonoBehaviour
             else{
                 SoundManager.PlayJumpSound();//Plays jump SFX when moving
             }
-            //If the current node is above the player, climbing
-            if (worldCursor.transform.position.y >= transform.position.y)
+
+            if (Input.GetKeyDown(KeyCode.LeftControl) && canJump)
             {
+                GameObject bullet = Instantiate(bulletRef, transform.position, Quaternion.identity);
+                bullet.transform.position -= new Vector3(0, 0, 10);
+                bullet.GetComponent<bulletController>().velocity = (worldCursor.transform.position - transform.position).normalized * 10;
+                SoundManager.PlayShootSFX();
                 anim.SetBool("Jumped", true);
                 anim.SetBool("IsMidair", true);
                 anim.SetBool("IsGrounded", false);
                 StartCoroutine(climb(worldCursor.transform.position, climbSpeed));
             }
-            //Otherwise, fall
-            else
+
+            //If the player hits Left Shift, stop all current climb coroutines, and start a new one targeting the node the cursor is selecting
+            if (Input.GetMouseButtonDown(1) && canJump) 
             {
+                StopAllCoroutines();
+                if(isSlash){
+                        SoundManager.PlaySwordSFX();//Plays sword SFX when moving
+                }
+                else{
+                    SoundManager.PlayJumpSound();//Plays jump SFX when moving
+                }
+                //If the current node is above the player, climbing
+                if (worldCursor.transform.position.y >= transform.position.y)
+                {
+                    
+                    StartCoroutine(climb(worldCursor.transform.position, climbSpeed));
+                }
+                //Otherwise, fall
+                else
+                {
+                    StartCoroutine(fall(worldCursor.transform.position, climbSpeed));
+                }
                 anim.SetBool("Jumped", true);
                 anim.SetBool("IsMidair", true);
                 anim.SetBool("IsGrounded", false);
                 StartCoroutine(fall(worldCursor.transform.position, climbSpeed));
             }
-            
         }
     }
 

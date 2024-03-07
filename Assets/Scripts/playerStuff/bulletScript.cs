@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class bulletScript : MonoBehaviour
 {
+    public playerController player;
+    void Start()
+    {
+        player = FindObjectOfType<playerController>();
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
+            player.isStunned = true;
             Destroy(gameObject);
-            Destroy(other.gameObject);
         }
     }
 }
