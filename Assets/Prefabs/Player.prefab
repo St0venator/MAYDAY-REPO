@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee66c7ffa5db444d8d592ccdfab269a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpLand: {fileID: 0}
   SoundManager: {fileID: 0}
   climbCurve:
     serializedVersion: 2
@@ -186,6 +187,9 @@ MonoBehaviour:
   worldCursor: {fileID: 0}
   childObj: {fileID: 1714480781030202504}
   bulletRef: {fileID: 5362242595105757345, guid: 827c9f08bcc049645ba94ba17cafa324, type: 3}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &9115979094187616014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +206,11 @@ MonoBehaviour:
   currOxygen: 0
   oxygenString: 
   oxygenText: {fileID: 0}
+  winText: {fileID: 0}
+  loseText: {fileID: 0}
+  restartButton: {fileID: 0}
   isDead: 0
+  isWin: 0
 --- !u!1 &1714480781030202504
 GameObject:
   m_ObjectHideFlags: 0

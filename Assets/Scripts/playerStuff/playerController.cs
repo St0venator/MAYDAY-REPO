@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
-    // Getting a referance to the sound manager
+    //Particles
+    public ParticleSystem jumpLand;
+    public ParticleSystem explosion;
+    public bool isExploded = false;
+
+    // Getting a reference to the sound manager
     [SerializeField]public SoundManager SoundManager;
 
     //The animation curves the player follows when they jump from one node to another
@@ -21,12 +28,18 @@ public class playerController : MonoBehaviour
     //Bool controlling when the player is using the sword or jumping at all
     bool isSlash = false;
     bool isJump = false;
+    bool isSlowed = false;
 
     //References
     Rigidbody rb;
+    Animator anim;
     [SerializeField] GameObject worldCursor;
     [SerializeField] GameObject childObj;
     [SerializeField] GameObject bulletRef;
+    [SerializeField] TextMeshProUGUI oxygenText;
+    [SerializeField] oxygenManager OXY;
+    public LayerMask mask;
+    
 
     //variables for stunning player
     [HideInInspector] public bool isStunned;
@@ -35,7 +48,7 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         climbSpeed /= 100f;
     }
@@ -57,13 +70,37 @@ public class playerController : MonoBehaviour
                 Debug.Log(stunTimer);
             }
             Debug.Log(isStunned);
+        OXY.oxygenDecrement(Time.deltaTime);
+        oxygenText.text = "Oxygen: " + OXY.displayOxygen();
+
+        if(OXY.oxygenAmnt < 0.5f)
+        {
+            MenuManager mngr = GameObject.Find("UIManager").GetComponent<MenuManager>();
+            mngr.StartCoroutine("LoadAsynchronously", "LoseScene");
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            
+            isSlash = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl) && canJump)
+        {
+            GameObject bullet = Instantiate(bulletRef, transform.position, Quaternion.identity);
+            bullet.transform.position -= new Vector3(0, 0, 10);
+            bullet.GetComponent<bulletController>().velocity = (worldCursor.transform.position - transform.position).normalized * 10;
+            SoundManager.PlayShootSFX();
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                Debug.Log("doing the input");
-                isSlash = true;
+
+            StopAllCoroutines();
+            if(isSlash){
+                    SoundManager.PlaySwordSFX();//Plays sword SFX when moving                  
+            }
+            else{
+                SoundManager.PlayJumpSound();//Plays jump SFX when moving
             }
 
             if (Input.GetKeyDown(KeyCode.LeftControl) && canJump)
@@ -72,6 +109,10 @@ public class playerController : MonoBehaviour
                 bullet.transform.position -= new Vector3(0, 0, 10);
                 bullet.GetComponent<bulletController>().velocity = (worldCursor.transform.position - transform.position).normalized * 10;
                 SoundManager.PlayShootSFX();
+                anim.SetBool("Jumped", true);
+                anim.SetBool("IsMidair", true);
+                anim.SetBool("IsGrounded", false);
+                StartCoroutine(climb(worldCursor.transform.position, climbSpeed));
             }
 
             //If the player hits Left Shift, stop all current climb coroutines, and start a new one targeting the node the cursor is selecting
@@ -95,7 +136,87 @@ public class playerController : MonoBehaviour
                 {
                     StartCoroutine(fall(worldCursor.transform.position, climbSpeed));
                 }
+                anim.SetBool("Jumped", true);
+                anim.SetBool("IsMidair", true);
+                anim.SetBool("IsGrounded", false);
+                StartCoroutine(fall(worldCursor.transform.position, climbSpeed));
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Whirlpool"))
+        {
+            isSlowed = true;
+        }
+        if (other.gameObject.CompareTag("Anchor"))
+        {
+            Vector3 currPos = transform.position;
+
+            Vector3 newPos = currPos;
+
+            newPos -= new Vector3(0, 30);
+
+            
+
+            Ray zRay = new Ray(newPos, new Vector3(0, 0, 1));
+
+            if (Physics.Raycast(zRay, out RaycastHit zHit, float.MaxValue, mask))
+            {
+                newPos.z = zHit.point.z;
+                Debug.Log(currPos.x + " " + currPos.y + " " + currPos.z);
+                Debug.Log(newPos.x + " " + newPos.y + " " + newPos.z);
+
+                StopAllCoroutines();
+                StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
+            }
+            BoxCollider col;
+            other.TryGetComponent<BoxCollider>(out col);
+
+            if(col != null)
+            {
+                col.enabled = false;
+            }
+            Destroy(other.gameObject, 1.5f);
+        }
+
+        if (other.gameObject.CompareTag("NavalMine"))
+        {
+            isExploded = true;
+            Debug.Log(isExploded);
+
+            Vector3 currPos = transform.position;
+
+            Vector3 newPos = currPos;
+
+            newPos -= new Vector3(0, 25);
+
+            Ray mRay = new Ray(newPos, new Vector3(0, 0, 1));
+
+            if (Physics.Raycast(mRay, out RaycastHit mHit, float.MaxValue, mask))
+            {
+                newPos.y = mHit.point.y;
+
+                StopAllCoroutines();
+                StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
+            }
+            else
+            {
+                newPos.y = mHit.point.y;
+                StopAllCoroutines();
+                StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
+            }
+            Destroy(other.gameObject);
+            explosion.Play();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Whirlpool"))
+        {
+            isSlowed = false;
         }
     }
 
@@ -113,16 +234,29 @@ public class playerController : MonoBehaviour
         Vector3 startPos = transform.position;
         canJump = false;
 
+        //Particles
+        jumpLand.Play();
+
         //Keeping the player in front of the wall, from the camera's POV by moving the player slightly closer to the camera
         dest = Vector3.MoveTowards(dest, Camera.main.transform.position, 0.1f);
 
         Vector3 destDist = dest - startPos;
 
-        GetComponent<oxygenController>().reduceOxygen(Mathf.Abs(destDist.magnitude));
+        //GetComponent<oxygenController>().reduceOxygen(Mathf.Abs(destDist.magnitude));
 
         if(destDist.magnitude > 10)
         {
-            destDist = destDist.normalized * 10;
+
+            if (isSlowed)
+            {
+                destDist = destDist.normalized * 6.6f;
+                speed *= 0.66f;
+            }
+            else
+            {
+                destDist = destDist.normalized * 10;
+            }
+            
 
             dest = startPos + destDist;
 
@@ -164,11 +298,19 @@ public class playerController : MonoBehaviour
             if (pos > 0.4f && !isSlash)
             {
                 canJump = true;
-                
+                anim.SetBool("Jumped", false);
+                anim.SetBool("IsMidair", false);
+                anim.SetBool("IsGrounded", true);
+                anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
             }
             else if(pos > 0.6f)
             {
                 canJump = true;
+                anim.SetBool("Jumped", false);
+                anim.SetBool("IsMidair", false);
+                anim.SetBool("IsGrounded", true);
+                anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
+                jumpLand.Stop(); // Particle End
             }
 
             yield return null;
@@ -178,8 +320,9 @@ public class playerController : MonoBehaviour
         
     }
 
-    public IEnumerator fall(Vector3 dest, float speed)
+    public IEnumerator fall(Vector3 dest, float speed = 25, bool isPlayerJump = true)
     {
+        Debug.Log("in the fall");
         /*
          * dest  - The transform.position of the node we're climbing to
          * speed - The amount we move along the x-axis of our animation curve each loop of the coroutine
@@ -192,14 +335,25 @@ public class playerController : MonoBehaviour
         Vector3 startPos = transform.position;
         canJump = false;
 
+        jumpLand.Play(); // Particles play
+
         //Keeping the player in front of the wall, from the camera's POV by moving the player slightly closer to the camera
         dest = Vector3.MoveTowards(dest, Camera.main.transform.position, 0.1f);
 
         Vector3 destDist = dest - startPos;
 
-        if (destDist.magnitude > 10)
+        
+        if (destDist.magnitude > 10 && isPlayerJump)
         {
-            destDist = destDist.normalized * 10;
+            if (isSlowed)
+            {
+                destDist = destDist.normalized * 6.6f;
+                speed *= 0.66f;
+            }
+            else
+            {
+                destDist = destDist.normalized * 10;
+            }
 
             dest = startPos + destDist;
 
@@ -220,7 +374,7 @@ public class playerController : MonoBehaviour
         //LERPing towards "dest" until we reach x = 1.1 on our animation curve
         while (pos < 1)
         {
-
+            Debug.Log("falling");
             //Moving n% of the way between our start and end positions, with n being the y-value of our animation curve at x = "pos"
             transform.position = Vector3.Slerp(newStart, newDest, fallCurve.Evaluate(pos)) + midPoint;
             pos = Mathf.MoveTowards(pos, 1.0f, speed * Time.deltaTime * 3);
@@ -234,7 +388,13 @@ public class playerController : MonoBehaviour
 
             if (pos > 0.4f)
             {
+                Debug.Log("fallOver");
                 canJump = true;
+                anim.SetBool("Jumped", false);
+                anim.SetBool("IsMidair", false);
+                anim.SetBool("IsGrounded", true);
+                anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
+                jumpLand.Stop(); // Particles
             }
 
             yield return null;

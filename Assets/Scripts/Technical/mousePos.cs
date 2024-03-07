@@ -40,6 +40,7 @@ public class mousePos : MonoBehaviour
                 temp = new Vector3(localHitPoint.x, localHitPoint.y, zHit.point.z);
             }   
         }
+        
 
         transform.position = temp;
         

@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class winCon : MonoBehaviour
 {
+    public levelSelector LS;
+    public oxygenManager OXY;
     // Start is called before the first frame update
     void Start()
     {
-        
+        LS.setup();
     }
 
     // Update is called once per frame
@@ -20,7 +20,9 @@ public class winCon : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<oxygenController>().isWin = true;
+            MenuManager mngr = GameObject.Find("UIManager").GetComponent<MenuManager>();
+            LS.changeScenes(mngr);
+            OXY.oxygenIncrement();
         }
     }
 }

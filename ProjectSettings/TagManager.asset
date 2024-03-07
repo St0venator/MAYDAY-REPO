@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Wall
   - Enemy
+  - Anchor
+  - NavalMine
+  - Whirlpool
   layers:
   - Default
   - TransparentFX
