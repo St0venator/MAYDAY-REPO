@@ -11,16 +11,14 @@ public class oxygenController : MonoBehaviour
 
     public string oxygenString;
     public TextMeshProUGUI oxygenText;
-    public TextMeshProUGUI winText;
-    public TextMeshProUGUI loseText;
-    public GameObject restartButton;
+    public TextMeshProUGUI oxygenText2;
+    public TextMeshProUGUI oxygenText3;
 
     public bool isDead = false;
     public bool isWin = false;
     // Start is called before the first frame update
     void Start()
     {
-        restartButton.SetActive(false); 
         currOxygen = maxOxygen;
         oxygenString = "Oxygen: " + currOxygen + "/" + maxOxygen;
         oxygenText.text = oxygenString;
@@ -31,15 +29,12 @@ public class oxygenController : MonoBehaviour
     {
         if (isDead)
         {
-            loseText.gameObject.SetActive(true);
+            oxygenText3.gameObject.SetActive(true);
             gameObject.SetActive(false);
-            restartButton.SetActive(true);
-
         }
         else if (isWin)
         {
-            winText.gameObject.SetActive(true);
-            restartButton.SetActive(true);
+            oxygenText2.gameObject.SetActive(true);
         }
     }
 
