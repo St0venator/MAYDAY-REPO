@@ -12,7 +12,6 @@ public class missle : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
         if (other.gameObject.CompareTag("Player"))
         {
             //player.isStunned = true;
