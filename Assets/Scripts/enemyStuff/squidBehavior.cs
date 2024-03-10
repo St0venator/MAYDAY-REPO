@@ -17,6 +17,8 @@ public class squidBehavior : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            // VFX trigger here for screen ink
+            Debug.Log("Get Inked");
             Destroy(gameObject);
         }
     }
