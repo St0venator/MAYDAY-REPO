@@ -133,6 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLand: {fileID: 0}
+  explosion: {fileID: 0}
+  isExploded: 0
   SoundManager: {fileID: 0}
   climbCurve:
     serializedVersion: 2
@@ -187,9 +189,13 @@ MonoBehaviour:
   worldCursor: {fileID: 0}
   childObj: {fileID: 1714480781030202504}
   bulletRef: {fileID: 5362242595105757345, guid: 827c9f08bcc049645ba94ba17cafa324, type: 3}
+  oxygenText: {fileID: 0}
+  OXY: {fileID: 0}
   mask:
     serializedVersion: 2
     m_Bits: 0
+  walkSpeed: 1
+  isStunned: 0
 --- !u!114 &9115979094187616014
 MonoBehaviour:
   m_ObjectHideFlags: 0
