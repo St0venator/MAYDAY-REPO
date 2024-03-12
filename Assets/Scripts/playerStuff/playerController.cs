@@ -184,7 +184,7 @@ public class playerController : MonoBehaviour
                 if (worldCursor.transform.position.y >= transform.position.y)
                 {
                     
-                    StartCoroutine(climb(worldCursor.transform.position, climbSpeed));
+                    StartCoroutine(climb(new Vector3[] { worldCursor.transform.position}, climbSpeed));
                 }
                 //Otherwise, fall
                 else
@@ -196,8 +196,6 @@ public class playerController : MonoBehaviour
                 anim.SetBool("IsGrounded", false);
                 StartCoroutine(fall(worldCursor.transform.position, climbSpeed));
             }
-            
-        }
 
         if(Input.GetKeyDown(KeyCode.Q) && canJump)
         {
