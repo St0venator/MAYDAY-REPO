@@ -39,6 +39,8 @@ public class playerController : MonoBehaviour
     [SerializeField] TextMeshProUGUI oxygenText;
     [SerializeField] oxygenManager OXY;
     public LayerMask mask;
+    public float walkSpeed = 1;
+    public GameObject target;
     
 
     //variables for stunning player
@@ -76,7 +78,72 @@ public class playerController : MonoBehaviour
         OXY.oxygenDecrement(Time.deltaTime);
         oxygenText.text = "Oxygen: " + OXY.displayOxygen();
 
-        if(OXY.oxygenAmnt < 0.5f)
+        #region walking
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        {
+            transform.position -= Vector3.right * Time.deltaTime * walkSpeed;
+        }
+        if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        {
+            transform.position += Vector3.right * Time.deltaTime * walkSpeed;
+        }
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        {
+            transform.position -= Vector3.up * Time.deltaTime * walkSpeed;
+        }
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        {
+            transform.position += Vector3.up * Time.deltaTime * walkSpeed;
+        }
+
+        Ray zRay = new Ray(new Vector3(transform.position.x, transform.position.y), new Vector3(0, 0, 1));
+        /*
+        Ray zRay1 = new Ray(new Vector3(transform.position.x + 0.01f, transform.position.y), new Vector3(0, 0, 1));
+        Ray zRay2 = new Ray(new Vector3(transform.position.x, transform.position.y + 0.01f), new Vector3(0, 0, 1));
+
+        Vector3 zPos1;
+        Vector3 zPos2;
+        Vector3 zPos3;
+
+        Physics.Raycast(zRay, out RaycastHit zHit0);
+        Physics.Raycast(zRay1, out RaycastHit zHit1);
+        Physics.Raycast(zRay2, out RaycastHit zHit2);
+
+        zPos1 = zHit0.point;
+        zPos2 = zHit1.point;
+        zPos3 = zHit2.point;
+        Plane plane = new Plane(zPos1, zPos2, zPos3);
+
+
+        Vector3 dir1 = zPos1 - zPos2;
+        Vector3 dir2 = zPos1 - zPos3;
+
+        Vector3 cross = Vector3.Cross(dir1, dir2);
+
+        transform.rotation = Quaternion.LookRotation(zHit0.normal, Vector3.up);
+        */
+
+        if (!isJump)
+        {
+            
+
+            /*
+            Transform newTrans = transform;
+            newTrans.position = transform.position + cross.normalized;
+            */
+
+            
+
+            if (Physics.Raycast(zRay, out RaycastHit zHit, float.MaxValue, mask))
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, zHit.point.z - .5f);
+            }
+        }
+        
+
+        #endregion
+
+        if (OXY.oxygenAmnt < 0.5f)
         {
             MenuManager mngr = GameObject.Find("UIManager").GetComponent<MenuManager>();
             mngr.StartCoroutine("LoadAsynchronously", "LoseScene");
@@ -99,7 +166,7 @@ public class playerController : MonoBehaviour
                 anim.SetBool("Jumped", true);
                 anim.SetBool("IsMidair", true);
                 anim.SetBool("IsGrounded", false);
-                StartCoroutine(climb(worldCursor.transform.position, climbSpeed));
+                StartCoroutine(climb(new Vector3[] {worldCursor.transform.position }, climbSpeed));
             */
             }
 
@@ -129,6 +196,82 @@ public class playerController : MonoBehaviour
                 anim.SetBool("IsGrounded", false);
                 StartCoroutine(fall(worldCursor.transform.position, climbSpeed));
             }
+            
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q) && canJump)
+        {
+            StopAllCoroutines();
+            if (isSlash)
+            {
+                SoundManager.PlaySwordSFX();//Plays sword SFX when moving                  
+            }
+            else
+            {
+                SoundManager.PlayJumpSound();//Plays jump SFX when moving
+            }
+            //If the current node is above the player, climbing
+            if (worldCursor.transform.position.y >= transform.position.y)
+            {
+                mousePos posScript = worldCursor.GetComponent<mousePos>();
+                anim.SetBool("Jumped", true);
+                anim.SetBool("IsMidair", true);
+                anim.SetBool("IsGrounded", false);
+                StartCoroutine(climb(new Vector3[] { worldCursor.transform.position, posScript.jumpPos2, posScript.jumpPos3}, climbSpeed * 3f));
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && canJump)
+        {
+            //If the current node is above the player, climbing
+            if (worldCursor.transform.position.y >= transform.position.y)
+            {
+                mousePos posScript = worldCursor.GetComponent<mousePos>();
+                anim.SetBool("Jumped", true);
+                anim.SetBool("IsMidair", true);
+                anim.SetBool("IsGrounded", false);
+                if(transform.position.x >= worldCursor.transform.position.x)
+                {
+                    StartCoroutine(climb(new Vector3[] { findStrafePos(true) }, climbSpeed * 3f));
+                }
+                else
+                {
+                    StartCoroutine(climb(new Vector3[] { findStrafePos(false) }, climbSpeed * 3f));
+                }
+            }
+        }
+    }
+
+    Vector3 findStrafePos(bool LR)
+    {
+        //true = Left
+        //false = Right
+        Vector3 strafePos = Vector3.zero;
+        float mod;
+        if (LR)
+        {
+            mod = -1f;
+        }
+        else
+        {
+            mod = 1f;
+        }
+        float dist = 20f;
+
+        do
+        {
+            Ray zRay = new Ray(transform.position + (new Vector3(dist, 0) * mod), new Vector3(0, 0, 1));
+
+            if (Physics.Raycast(zRay, out RaycastHit zHit, float.MaxValue, mask))
+            {
+                strafePos = zHit.point;
+            }
+
+            dist -= 2f;
+            
+        } while (strafePos == Vector3.zero);
+
+        return strafePos;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -207,104 +350,112 @@ public class playerController : MonoBehaviour
         }
     }
 
-    public IEnumerator climb(Vector3 dest, float speed)
+    public IEnumerator climb(Vector3[] destList, float speed)
     {
-        /*
+        foreach(Vector3 destIter in destList)
+        {
+            if(destIter == Vector3.zero)
+            {
+                break;
+            }
+            /*
          * dest  - The transform.position of the node we're climbing to
          * speed - The amount we move along the x-axis of our animation curve each loop of the coroutine
          * 
          * climb: Moves the player from one node to another by LERPing, sampling an animation curve
         */
 
-        //Resetting all of our variables, starting the animation curve at 0, and our starting position as our current position
-        float pos = 0.0f;
-        Vector3 startPos = transform.position;
-        canJump = false;
+            //Resetting all of our variables, starting the animation curve at 0, and our starting position as our current position
+            float pos = 0.0f;
+            Vector3 startPos = transform.position;
+            canJump = false;
 
-        //Particles
-        jumpLand.Play();
+            //Particles
+            jumpLand.Play();
 
-        //Keeping the player in front of the wall, from the camera's POV by moving the player slightly closer to the camera
-        dest = Vector3.MoveTowards(dest, Camera.main.transform.position, 0.1f);
+            //Keeping the player in front of the wall, from the camera's POV by moving the player slightly closer to the camera
+            Vector3 dest = Vector3.MoveTowards(destIter, Camera.main.transform.position, 0.1f);
 
-        Vector3 destDist = dest - startPos;
+            Vector3 destDist = dest - startPos;
 
-        //GetComponent<oxygenController>().reduceOxygen(Mathf.Abs(destDist.magnitude));
+            //GetComponent<oxygenController>().reduceOxygen(Mathf.Abs(destDist.magnitude));
 
-        if(destDist.magnitude > 10)
-        {
-
-            if (isSlowed)
+            if (destDist.magnitude > 10)
             {
-                destDist = destDist.normalized * 6.6f;
-                speed *= 0.66f;
+
+                if (isSlowed)
+                {
+                    destDist = destDist.normalized * 6.6f;
+                    speed *= 0.66f;
+                }
+                else
+                {
+                    destDist = destDist.normalized * 10;
+                }
+
+
+                dest = startPos + destDist;
+
+                Physics.Raycast(new Ray(new Vector3(dest.x, dest.y), new Vector3(0, 0, 1)), out RaycastHit hit, float.MaxValue);
+
+                dest.z = hit.point.z;
             }
-            else
+
+            //Calculating the midpoint between the current and target nodes, and them moving it away from the camera
+            Vector3 midPoint = (dest + startPos) / 2;
+            midPoint -= Vector3.MoveTowards(midPoint, Camera.main.transform.position, 3.14f) - midPoint;
+
+            //Getting our modified coordinates for our SLERP
+            Vector3 newStart = startPos - midPoint;
+            Vector3 newDest = dest - midPoint;
+
+            bool innerIsSlash = isSlash;
+            Debug.Log(innerIsSlash);
+
+            if (innerIsSlash)
             {
-                destDist = destDist.normalized * 10;
+                childObj.SetActive(true);
             }
-            
+            //LERPing towards "dest" until we reach the end of our animation curve
+            while (pos < 1f)
+            {
 
-            dest = startPos + destDist;
+                //Moving n% of the way between our start and end positions, with n being the y-value of our animation curve at x = "pos"
+                transform.position = Vector3.Slerp(newStart, newDest, climbCurve.Evaluate(pos)) + midPoint;
+                pos = Mathf.MoveTowards(pos, 1.0f, speed * Time.deltaTime * 3);
 
-            Physics.Raycast(new Ray(new Vector3(dest.x, dest.y), new Vector3(0, 0, 1)), out RaycastHit hit, float.MaxValue);
+                if (pos > 0.2f && innerIsSlash)
+                {
+                    childObj.SetActive(false);
+                    innerIsSlash = false;
+                    isSlash = false;
+                }
 
-            dest.z = hit.point.z;
+                if (pos > 0.4f && !isSlash)
+                {
+                    canJump = true;
+                    anim.SetBool("Jumped", false);
+                    anim.SetBool("IsMidair", false);
+                    anim.SetBool("IsGrounded", true);
+                    anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
+                }
+                else if (pos > 0.6f)
+                {
+                    canJump = true;
+                    anim.SetBool("Jumped", false);
+                    anim.SetBool("IsMidair", false);
+                    anim.SetBool("IsGrounded", true);
+                    anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
+                    jumpLand.Stop(); // Particle End
+                }
+
+                yield return null;
+            }
+            childObj.SetActive(false);
+            canJump = true;
+
         }
 
-        //Calculating the midpoint between the current and target nodes, and them moving it away from the camera
-        Vector3 midPoint = (dest + startPos) / 2;
-        midPoint -= Vector3.MoveTowards(midPoint, Camera.main.transform.position, 3.14f) - midPoint;
-
-        //Getting our modified coordinates for our SLERP
-        Vector3 newStart = startPos - midPoint;
-        Vector3 newDest = dest - midPoint;
-
-        bool innerIsSlash = isSlash;
-        Debug.Log(innerIsSlash);
-
-        if (innerIsSlash)
-        {
-            childObj.SetActive(true);
-        }
-        //LERPing towards "dest" until we reach the end of our animation curve
-        while(pos < 1f)
-        {
-
-            //Moving n% of the way between our start and end positions, with n being the y-value of our animation curve at x = "pos"
-            transform.position = Vector3.Slerp(newStart, newDest, climbCurve.Evaluate(pos)) + midPoint;
-            pos = Mathf.MoveTowards(pos, 1.0f, speed * Time.deltaTime * 3);
-
-            if(pos > 0.2f && innerIsSlash)
-            {
-                childObj.SetActive(false);
-                innerIsSlash = false;
-                isSlash = false;
-            }
-
-            if (pos > 0.4f && !isSlash)
-            {
-                canJump = true;
-                anim.SetBool("Jumped", false);
-                anim.SetBool("IsMidair", false);
-                anim.SetBool("IsGrounded", true);
-                anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
-            }
-            else if(pos > 0.6f)
-            {
-                canJump = true;
-                anim.SetBool("Jumped", false);
-                anim.SetBool("IsMidair", false);
-                anim.SetBool("IsGrounded", true);
-                anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
-                jumpLand.Stop(); // Particle End
-            }
-
-            yield return null;
-        }
-        childObj.SetActive(false);
-        canJump = true;
-        
     }
 
     public IEnumerator fall(Vector3 dest, float speed = 25, bool isPlayerJump = true)

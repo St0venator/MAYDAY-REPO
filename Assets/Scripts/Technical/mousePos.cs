@@ -9,6 +9,8 @@ public class mousePos : MonoBehaviour
     float zComponent = 0;
     public LayerMask mask;
     public float range;
+    public Vector3 jumpPos2;
+    public Vector3 jumpPos3;
     GameObject playerRef;
     Vector3 playerPos;
     Vector2 localHitPoint;
@@ -25,6 +27,7 @@ public class mousePos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         playerPos = playerRef.transform.position;
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -43,7 +46,33 @@ public class mousePos : MonoBehaviour
         
 
         transform.position = temp;
-        
+
+        Vector3 diff = transform.position - playerPos;
+
+        Vector3 twoPos = transform.position + diff;
+        Vector3 threePos = transform.position + (2f * diff);
+
+        Ray twoRay = new Ray(new Vector3(twoPos.x, twoPos.y), new Vector3(0, 0, 1));
+        Ray threeRay = new Ray(new Vector3(threePos.x, threePos.y), new Vector3(0, 0, 1));
+
+        if (Physics.Raycast(twoRay, out RaycastHit twoHit, float.MaxValue, mask))
+        {
+            jumpPos2 = new Vector3(twoPos.x, twoPos.y, twoHit.point.z);
+        }
+        else
+        {
+            jumpPos2 = Vector3.zero;
+        }
+
+        if (Physics.Raycast(threeRay, out RaycastHit threeHit, float.MaxValue, mask))
+        {
+            jumpPos3 = new Vector3(threePos.x, threePos.y, threeHit.point.z);
+        }
+        else
+        {
+            jumpPos3 = Vector3.zero;
+        }
+
     }
 
     Vector3 clampPos(Vector3 startPos, int r)
