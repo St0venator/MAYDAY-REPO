@@ -371,6 +371,7 @@ public class playerController : MonoBehaviour
 
             //Particles
             jumpLand.Play();
+            
 
             //Keeping the player in front of the wall, from the camera's POV by moving the player slightly closer to the camera
             Vector3 dest = Vector3.MoveTowards(destIter, Camera.main.transform.position, 0.1f);
