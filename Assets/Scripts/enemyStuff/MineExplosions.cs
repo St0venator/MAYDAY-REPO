@@ -15,7 +15,6 @@ public class MineExplosions : MonoBehaviour
     {
         if(player.isExploded)
         {
-            Debug.Log("Fuck this");
             explosion.Play();
             player.isExploded = false;
             explosion.Stop();
