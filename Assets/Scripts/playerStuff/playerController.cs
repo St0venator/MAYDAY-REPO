@@ -193,6 +193,58 @@ public class playerController : MonoBehaviour
                 StartCoroutine(climb(new Vector3[] { worldCursor.transform.position, posScript.jumpPos2, posScript.jumpPos3}, climbSpeed * 3f));
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.E) && canJump)
+        {
+            //If the current node is above the player, climbing
+            if (worldCursor.transform.position.y >= transform.position.y)
+            {
+                mousePos posScript = worldCursor.GetComponent<mousePos>();
+                anim.SetBool("Jumped", true);
+                anim.SetBool("IsMidair", true);
+                anim.SetBool("IsGrounded", false);
+                if(transform.position.x >= worldCursor.transform.position.x)
+                {
+                    StartCoroutine(climb(new Vector3[] { findStrafePos(true) }, climbSpeed * 3f));
+                }
+                else
+                {
+                    StartCoroutine(climb(new Vector3[] { findStrafePos(false) }, climbSpeed * 3f));
+                }
+            }
+        }
+    }
+
+    Vector3 findStrafePos(bool LR)
+    {
+        //true = Left
+        //false = Right
+        Vector3 strafePos = Vector3.zero;
+        float mod;
+        if (LR)
+        {
+            mod = -1f;
+        }
+        else
+        {
+            mod = 1f;
+        }
+        float dist = 20f;
+
+        do
+        {
+            Ray zRay = new Ray(transform.position + (new Vector3(dist, 0) * mod), new Vector3(0, 0, 1));
+
+            if (Physics.Raycast(zRay, out RaycastHit zHit, float.MaxValue, mask))
+            {
+                strafePos = zHit.point;
+            }
+
+            dist -= 2f;
+            
+        } while (strafePos == Vector3.zero);
+
+        return strafePos;
     }
 
     private void OnTriggerEnter(Collider other)
