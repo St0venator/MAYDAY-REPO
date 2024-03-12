@@ -7,11 +7,13 @@ public class rockController : MonoBehaviour
 {
     public LayerMask mask;
     Rigidbody rb;
+    public AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.drag = Random.Range(0f, 0.2f);
+        source.Play();
     }
 
     // Update is called once per frame

@@ -40,7 +40,7 @@ public class playerController : MonoBehaviour
     [SerializeField] oxygenManager OXY;
     public LayerMask mask;
     public float walkSpeed = 1;
-    public GameObject target;
+    //public GameObject target;
     
 
     //variables for stunning player
@@ -311,6 +311,7 @@ public class playerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("NavalMine"))
         {
+            SoundManager.PlayMineSFX();
             isExploded = true;
             Debug.Log(isExploded);
 

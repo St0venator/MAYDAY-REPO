@@ -5,9 +5,12 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource jumpSFX, shootSFX, swordSFX;
+    public AudioSource jumpSFX, shootSFX, swordSFX, mineSFX;
 
-
+    public void PlayMineSFX()
+    {
+        mineSFX.Play();
+    }
     public void PlayJumpSound()
     {
         jumpSFX.Play();

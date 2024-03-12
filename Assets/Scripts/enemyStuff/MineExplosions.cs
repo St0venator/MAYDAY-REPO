@@ -6,9 +6,10 @@ public class MineExplosions : MonoBehaviour
 {
     [SerializeField]private ParticleSystem explosion;
     [SerializeField] private playerController player;
+    public AudioSource source;
 
     void Start() {
-
+        source.Play();
     }
 
     /*void Update()
@@ -21,6 +22,7 @@ public class MineExplosions : MonoBehaviour
         }
     }*/
 
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
@@ -29,4 +31,5 @@ public class MineExplosions : MonoBehaviour
             explosion.Play();
         }
     }
+    */
 }
