@@ -7,6 +7,7 @@ public class Pathfinding : MonoBehaviour
 {
 	PathRequestManager requestManager;
 	Grid grid;
+	public bool pausePath;
 	
 	void Awake() 
 	{
@@ -36,7 +37,7 @@ public class Pathfinding : MonoBehaviour
 			HashSet<Node> closedSet = new HashSet<Node>();
 			openSet.Add(startNode);
 			
-			while (openSet.Count > 0) 
+			while (openSet.Count > 0 && pausePath) 
 			{
 				Node currentNode = openSet.RemoveFirst();
 				closedSet.Add(currentNode);
@@ -67,6 +68,10 @@ public class Pathfinding : MonoBehaviour
 							openSet.UpdateItem(neighbour);
 					}
 				}
+			}
+			while(!pausePath)
+			{
+				yield return null;
 			}
 		}
 		yield return null;
