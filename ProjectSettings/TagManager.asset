@@ -9,6 +9,7 @@ TagManager:
   - Anchor
   - NavalMine
   - Whirlpool
+  - virtualCamera
   layers:
   - Default
   - TransparentFX
