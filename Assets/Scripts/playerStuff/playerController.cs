@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -156,7 +157,7 @@ public class playerController : MonoBehaviour
         }
 
 
-            if (Input.GetKeyDown(KeyCode.LeftControl) && canJump)
+        if (Input.GetKeyDown(KeyCode.LeftControl) && canJump)
             {
                 GameObject bullet = Instantiate(bulletRef, transform.position, Quaternion.identity);
                 bullet.transform.position -= new Vector3(0, 0, 10);
@@ -171,7 +172,7 @@ public class playerController : MonoBehaviour
             }
 
             //If the player hits Left Shift, stop all current climb coroutines, and start a new one targeting the node the cursor is selecting
-            if (Input.GetMouseButtonDown(1) && canJump) 
+        if (Input.GetMouseButtonDown(1) && canJump) 
             {
                 StopAllCoroutines();
                 if(isSlash){
@@ -339,6 +340,12 @@ public class playerController : MonoBehaviour
             Destroy(other.gameObject);
             explosion.Play();
         }
+
+        if(other.gameObject.layer == 2 && !other.gameObject.CompareTag("Whirlpool"))
+        {
+            
+
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -480,6 +487,11 @@ public class playerController : MonoBehaviour
 
         Vector3 destDist = dest - startPos;
 
+        if(!isPlayerJump)
+        {
+            CinemachineVirtualCamera cineCam = GameObject.FindGameObjectWithTag("virtualCamera").GetComponent<CinemachineVirtualCamera>();
+            cineCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 8f;
+        }
         
         if (destDist.magnitude > 10 && isPlayerJump)
         {
@@ -533,6 +545,12 @@ public class playerController : MonoBehaviour
                 anim.SetBool("IsGrounded", true);
                 anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
                 jumpLand.Stop(); // Particles
+            }
+
+            if(pos >= 0.8f)
+            {
+                CinemachineVirtualCamera cineCam = GameObject.FindGameObjectWithTag("virtualCamera").GetComponent<CinemachineVirtualCamera>();
+                cineCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
             }
 
             yield return null;
