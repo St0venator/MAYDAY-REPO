@@ -13,17 +13,21 @@ public class enemySpawner : MonoBehaviour
     [SerializeField] GameObject mine;
     [SerializeField] GameObject avalanche;
     [SerializeField] LayerMask mask;
+
+    [SerializeField] Image dangerUI;
     // Start is called before the first frame update
     void Start()
     {
         spawnStationary();
         StartCoroutine(spawnRandom());
+        dangerUI.gameObject.SetActive(false); // Turn of indicator
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        moveDangerIcon();
+
     }
 
     IEnumerator spawnRandom()
@@ -110,6 +114,9 @@ public class enemySpawner : MonoBehaviour
 
         Vector3 spawnPos = new Vector3(playerPos.x, yPos, zPos);
 
+        StartCoroutine(spawnDangerIcon());
+        
+
         GameObject newAnchor = Instantiate(anchor, spawnPos, Quaternion.identity);
 
         newAnchor.transform.Rotate(new Vector3(-90, 0, 0));
@@ -121,6 +128,44 @@ public class enemySpawner : MonoBehaviour
 
         Vector3 spawnPos = new Vector3(playerPos.x, yPos, zPos);
 
+        StartCoroutine(spawnDangerIcon());
+
         Instantiate(avalanche, spawnPos, Quaternion.identity);
     }
+
+    IEnumerator spawnDangerIcon()
+    {
+        Debug.Log("called");
+        dangerUI.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.10f); //Flash 1
+        dangerUI.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.10f);
+        dangerUI.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.10f); //Flash 2
+        dangerUI.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.10f);
+        dangerUI.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.10f); // Flash 3
+        dangerUI.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.10f);
+        dangerUI.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.10f); // Flash 4
+        dangerUI.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.10f);
+        dangerUI.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.10f); // Flash 5
+        dangerUI.gameObject.SetActive(false);
+
+        StopCoroutine(spawnDangerIcon());
+    }
+
+    void moveDangerIcon()
+    {
+        Vector3 UIPos = GameObject.FindGameObjectWithTag("UIPos").transform.position;
+        dangerUI.transform.position = new Vector3(UIPos.x, UIPos.y, UIPos.z);
+    }
+
+
+  
+
 }

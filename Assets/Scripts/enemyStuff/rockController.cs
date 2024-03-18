@@ -24,7 +24,7 @@ public class rockController : MonoBehaviour
         if (Physics.Raycast(zRay, out RaycastHit zHit, float.MaxValue, mask))
         {
             
-            transform.position = new Vector3(transform.position.x, transform.position.y, zHit.point.z - 5);
+            transform.position = new Vector3(transform.position.x, transform.position.y + 1, zHit.point.z - 5);
         }
 
         transform.Rotate(transform.right, -1);

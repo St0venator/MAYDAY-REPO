@@ -10,6 +10,7 @@ TagManager:
   - NavalMine
   - Whirlpool
   - virtualCamera
+  - UIPos
   layers:
   - Default
   - TransparentFX
