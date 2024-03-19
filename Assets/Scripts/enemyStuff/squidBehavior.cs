@@ -6,7 +6,7 @@ public class squidBehavior : MonoBehaviour
 {
     [SerializeField]private Vector3 swimP; 
     [SerializeField]private Vector3 swimP1;
-    [SerializeField]private Vector3 swimP2;
+    [SerializeField]private GameObject ink;
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class squidBehavior : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            // VFX trigger here for screen ink
+            Instantiate(ink);
             Debug.Log("Get Inked");
             Destroy(gameObject);
         }
