@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class oxygenController : MonoBehaviour
 {
-    public float maxOxygen = 100f;
+    public float maxOxygen = 30f;
     public float currOxygen;
 
     public string oxygenString;

@@ -92,5 +92,9 @@ public class MenuManager : MonoBehaviour
         Debug.Log("Volume Changed");
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 
 }
