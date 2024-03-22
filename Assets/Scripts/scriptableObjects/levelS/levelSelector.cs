@@ -29,8 +29,21 @@ public class levelSelector : ScriptableObject
         allScenes.Remove(nextScene);
     }
 
+    public void preSetScenes()
+    {
+        allScenes.Add("blockGame");
+        allScenes.Add("goatGame");
+        allScenes.Add("lungs");
+        allScenes.Add("negaMungus");
+        allScenes.Add("quintana");
+        allScenes.Add("skullFace");
+        allScenes.Add("texus");
+        allScenes.Add("yknow");
+    }
+
     private void Awake()
     {
+        preSetScenes();
         setup();
     }
 }

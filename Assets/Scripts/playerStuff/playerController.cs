@@ -77,7 +77,7 @@ public class playerController : MonoBehaviour
         }
 
         OXY.oxygenDecrement(Time.deltaTime);
-        //oxygenText.text = "Oxygen: " + OXY.displayOxygen();
+        oxygenText.text = "Oxygen: " + OXY.displayOxygen();
 
         #region walking
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))

@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/oxygenController", order = 2)]
 public class oxygenManager : ScriptableObject
 {
-    public float oxygenAmnt = 100f;
-    const float oxygenInc = 100f;
-    const float defaultOxygen = 100f;
+    public float oxygenAmnt = 30f;
+    const float oxygenInc = 30f;
+    const float defaultOxygen = 30f;
 
     public void resetOxygen()
     {

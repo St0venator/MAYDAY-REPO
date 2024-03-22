@@ -336,7 +336,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
-  walkSpeed: 1
+  walkSpeed: 5
   isStunned: 0
 --- !u!1 &556582233652055892
 GameObject:

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: sceneManager
   m_EditorClassIdentifier: 
   allScenes:
-  - BGScene
-  nextScene: BGScene
+  - yknow
+  nextScene: yknow
