@@ -45,7 +45,7 @@ public class playerController : MonoBehaviour
     
 
     //variables for stunning player
-    [HideInInspector] public bool isStunned;
+    [HideInInspector] public bool isStunned = false;
     private float stunTimer = 3.0f;
 
     // Start is called before the first frame update
@@ -59,7 +59,7 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isStunned)
+        /*if (isStunned)
         {
             if (stunTimer <= 0)
             {
@@ -74,7 +74,7 @@ public class playerController : MonoBehaviour
             }
             Debug.Log(isStunned);
 
-        }
+        }*/
 
         OXY.oxygenDecrement(Time.deltaTime);
         oxygenText.text = "Oxygen: " + OXY.displayOxygen();
