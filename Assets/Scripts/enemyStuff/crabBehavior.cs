@@ -5,22 +5,20 @@ using UnityEngine;
 public class crabBehavior : MonoBehaviour
 {
     //Getting the different crab componesnts
-    [SerializeField] private SphereCollider rightClaw;
-    [SerializeField] private SphereCollider leftClaw;
-    [SerializeField] private SphereCollider weakSpot;
+    //[SerializeField] private SphereCollider rightClaw;
+    //[SerializeField] private SphereCollider leftClaw;
+    //[SerializeField] private SphereCollider weakSpot;
 
     //attributes of the crab
-    private float carbSpeed = 15f;
     private float crabDistancing = 7f;
-    private float crabSightRange = 50f;
+    private float crabSightRange = 30f;
     private float crabAttackRange = 9f;
-    private float stunTime = 5f;
     private float timer = 5f;
     private float bulletTime = 2f;
     public GameObject enemyBullet;
     public GameObject shootingPos;
     //bool alreadyAttacked = false;
-    bool isCrabStunned = false;
+    //bool isCrabStunned = false;
     public bool inAttackRange, inSightRange, inGround;
 
     //patrol variables
@@ -29,13 +27,13 @@ public class crabBehavior : MonoBehaviour
     [SerializeField]private Vector3 walkPoint2;
 
     //Reference to other objects
-    [SerializeField] private MeshCollider wall;
+    //[SerializeField] private MeshCollider wall;
     [SerializeField] private LayerMask player;
     //[SerializeField] private GameObject aStar;
     [SerializeField]private Pathfinding pathFinder;
     
     //Animation curve of the crabs attack
-    [SerializeField] private AnimationCurve Jab;
+    //[SerializeField] private AnimationCurve Jab;
 
     void Start()
     {
@@ -84,8 +82,8 @@ public class crabBehavior : MonoBehaviour
     void CrabChase()
     {
         StopAllCoroutines();
-        GetComponent<Unit>().enabled = true;   
         pathFinder.pausePath = true;
+        GetComponent<Unit>().enabled = true;   
     }
 
     void CrabAttack()
