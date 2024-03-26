@@ -6,15 +6,18 @@ public class Unit : MonoBehaviour {
 	const float minPathUpdateTime = .2f;
 	const float pathUpdateMoveThreshold = .5f;
 
-	public Transform target;
-	public float speed = 20;
-	public float turnSpeed = 3;
-	public float turnDst = 5;
-	public float stoppingDst = 10;
+	[SerializeField]private GameObject player;
+	[SerializeField]private Transform target;
+	[SerializeField]private float speed = 20;
+	[SerializeField]private float turnSpeed = 3;
+	[SerializeField]private float turnDst = 5;
+	[SerializeField]private float stoppingDst = 10;
 
 	Path path;
 
 	void Start() {
+		player = GameObject.FindWithTag("Player");
+		target = player.transform;
 		StartCoroutine (UpdatePath ());
 	}
 

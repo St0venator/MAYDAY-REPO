@@ -22,9 +22,8 @@ public class crabBehavior : MonoBehaviour
     public bool inAttackRange, inSightRange, inGround;
 
     //patrol variables
-    [SerializeField]private Vector3 walkPoint;
-    [SerializeField]private Vector3 walkPoint1;
-    [SerializeField]private Vector3 walkPoint2;
+    [SerializeField]private Vector3 swimP; 
+    [SerializeField]private Vector3 swimP1;
 
     //Reference to other objects
     //[SerializeField] private MeshCollider wall;
@@ -37,6 +36,7 @@ public class crabBehavior : MonoBehaviour
 
     void Start()
     {
+        pathFinder = GetComponent<Pathfinding>();
         GetComponent<Unit>().enabled = false;
         pathFinder.pausePath = false;
     }
@@ -104,13 +104,16 @@ public class crabBehavior : MonoBehaviour
 
     IEnumerator StartWalking()
     {
-        var walkPoint1 = transform.position;
-        yield return StartCoroutine(MoveObject(transform, walkPoint1, walkPoint2, 3.0f));
-        yield return StartCoroutine(MoveObject(transform, walkPoint2, walkPoint, 3.0f));
+        var swimP = transform.position;
+        var swimP1X = Random.Range(swimP.x - 10, swimP.x + 10);
+        var swimP1Y = Random.Range(swimP.y - 10, swimP.y + 10);
+        swimP1 = new Vector3(swimP1X, swimP1Y, 70.0f);
+        yield return StartCoroutine(MoveObject(transform, swimP, swimP1, 3.0f));
+        yield return StartCoroutine(MoveObject(transform, swimP1, swimP, 3.0f));
         while(true)
         {
-            yield return StartCoroutine(MoveObject(transform, walkPoint, walkPoint2, 3.0f));
-            yield return StartCoroutine(MoveObject(transform, walkPoint2, walkPoint, 3.0f));
+            yield return StartCoroutine(MoveObject(transform, swimP, swimP1, 3.0f));
+            yield return StartCoroutine(MoveObject(transform, swimP1, swimP, 3.0f));
         } 
     }
 

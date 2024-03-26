@@ -11,6 +11,7 @@ TagManager:
   - Whirlpool
   - virtualCamera
   - UIPos
+  - AIMovem
   layers:
   - Default
   - TransparentFX

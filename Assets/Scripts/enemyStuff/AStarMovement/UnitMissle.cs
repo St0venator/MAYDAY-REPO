@@ -7,15 +7,18 @@ public class UnitMissle : MonoBehaviour{
     const float minPathUpdateTime = .2f;
 	const float pathUpdateMoveThreshold = .5f;
 
-	public Transform target;
-	public float speed = 10;
-	public float turnSpeed = 1;
-	public float turnDst = 7;
-	public float stoppingDst = 5;
+	[SerializeField]private GameObject player;
+	[SerializeField]private Transform target;
+	[SerializeField]private float speed = 10;
+	[SerializeField]private float turnSpeed = 1;
+	[SerializeField]private float turnDst = 7;
+	[SerializeField]private float stoppingDst = 5;
 
 	Path path;
 
 	void Start() {
+		player = GameObject.FindWithTag("Player");
+		target = player.transform;
 		StartCoroutine (UpdatePath ());
 	}
 
