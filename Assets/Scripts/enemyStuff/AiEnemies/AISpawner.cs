@@ -49,7 +49,7 @@ public class AISpawner : MonoBehaviour
         do
         {
             xRange = Random.Range(x, grid.gridSizeX/2);
-            yRange = Random.Range(0, grid.gridSizeY/2);
+            yRange = Random.Range(0, grid.gridSizeY);
 
             Ray zRay = new Ray(new Vector3(xRange, yRange), new Vector3(0, 0, 1));
 
@@ -74,7 +74,7 @@ public class AISpawner : MonoBehaviour
         do
         {
             xRange = Random.Range(x, grid.gridSizeX/2);
-            yRange = Random.Range(0, grid.gridSizeY/2);
+            yRange = Random.Range(0, grid.gridSizeY);
 
             Ray zRay = new Ray(new Vector3(xRange, yRange), new Vector3(0, 0, 1));
 

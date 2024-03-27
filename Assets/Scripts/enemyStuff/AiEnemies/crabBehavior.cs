@@ -34,11 +34,16 @@ public class crabBehavior : MonoBehaviour
     //Animation curve of the crabs attack
     //[SerializeField] private AnimationCurve Jab;
 
+    void Awake(){
+        player = LayerMask.GetMask("player");
+        pathFinder = GameObject.Find("A_").GetComponent<Pathfinding>();
+        GetComponent<Unit>().enabled = false;
+        pathFinder.pausePath = true;
+    }
+
     void Start()
     {
-        pathFinder = GetComponent<Pathfinding>();
-        GetComponent<Unit>().enabled = false;
-        pathFinder.pausePath = false;
+
     }
 
     void Update()
@@ -76,13 +81,13 @@ public class crabBehavior : MonoBehaviour
     {
         StartCoroutine("StartWalking");
         GetComponent<Unit>().enabled = false;
-        pathFinder.pausePath = false;
+        pathFinder.pausePath = true;
     }
 
     void CrabChase()
     {
         StopAllCoroutines();
-        pathFinder.pausePath = true;
+        pathFinder.pausePath = false;
         GetComponent<Unit>().enabled = true;   
     }
 

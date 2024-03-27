@@ -15,9 +15,12 @@ public class Unit : MonoBehaviour {
 
 	Path path;
 
-	void Start() {
+	void Awake(){
 		player = GameObject.FindWithTag("Player");
 		target = player.transform;
+	}
+
+	void Start() {
 		StartCoroutine (UpdatePath ());
 	}
 

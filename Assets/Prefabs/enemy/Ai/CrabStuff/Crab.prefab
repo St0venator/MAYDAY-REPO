@@ -131,9 +131,8 @@ MonoBehaviour:
   inAttackRange: 0
   inSightRange: 0
   inGround: 0
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPoint1: {x: 0, y: 0, z: 0}
-  walkPoint2: {x: 0, y: 0, z: 0}
+  swimP: {x: 0, y: 0, z: 0}
+  swimP1: {x: 0, y: 0, z: 0}
   player:
     serializedVersion: 2
     m_Bits: 8
@@ -150,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5067cd587a66ddb4c9f895292a06230c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 471692072708642619, guid: bf8e2b014a44218428a7034e5993c96a, type: 3}
   target: {fileID: 0}
   speed: 20
   turnSpeed: 3
