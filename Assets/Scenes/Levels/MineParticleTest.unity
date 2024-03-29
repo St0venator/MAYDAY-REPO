@@ -14593,6 +14593,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501202080}
   m_Mesh: {fileID: 8699828145943373698, guid: 611e6ec639e40ad4d891ee5ba2d8f46d, type: 3}
+--- !u!1001 &502810496
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2065757611050643478, guid: 9cc93f21a20005145ab4379f8b67bb56, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 150.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065757611050643478, guid: 9cc93f21a20005145ab4379f8b67bb56, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 35.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065757611050643478, guid: 9cc93f21a20005145ab4379f8b67bb56, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065757611050643478, guid: 9cc93f21a20005145ab4379f8b67bb56, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065757611050643478, guid: 9cc93f21a20005145ab4379f8b67bb56, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065757611050643478, guid: 9cc93f21a20005145ab4379f8b67bb56, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065757611050643478, guid: 9cc93f21a20005145ab4379f8b67bb56, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065757611050643478, guid: 9cc93f21a20005145ab4379f8b67bb56, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065757611050643478, guid: 9cc93f21a20005145ab4379f8b67bb56, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065757611050643478, guid: 9cc93f21a20005145ab4379f8b67bb56, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259319370655674851, guid: 9cc93f21a20005145ab4379f8b67bb56, type: 3}
+      propertyPath: m_Name
+      value: MissleSpawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9cc93f21a20005145ab4379f8b67bb56, type: 3}
 --- !u!1 &511984489
 GameObject:
   m_ObjectHideFlags: 0
@@ -58482,3 +58539,4 @@ SceneRoots:
   - {fileID: 1873977102}
   - {fileID: 307837766}
   - {fileID: 395263882}
+  - {fileID: 502810496}
