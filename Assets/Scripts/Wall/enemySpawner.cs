@@ -36,7 +36,7 @@ public class enemySpawner : MonoBehaviour
         {
             int randOdds = Random.Range(0, 101);
 
-            if(randOdds >= 90)
+            if(randOdds >= 60)
             {
                 int randChoice = Random.Range(0, 2);
 
@@ -77,17 +77,18 @@ public class enemySpawner : MonoBehaviour
         bool validSpawn = false;
         float xRange;
         float yRange;
-
+        float zPos = 0;
         do
         {
             xRange = Random.Range(-100, 100);
             yRange = Random.Range(0, 200);
-
+            
             Ray zRay = new Ray(new Vector3(xRange, yRange), new Vector3(0, 0, 1));
 
             if (Physics.Raycast(zRay, out RaycastHit zHit, float.MaxValue, mask))
             {
                 validSpawn = true;
+                zPos = zHit.point.z;
             }
         } while(!validSpawn);
 
