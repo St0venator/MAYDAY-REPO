@@ -22,6 +22,8 @@ public class playerController : MonoBehaviour
     //The speed the player jumps up to another node
     [SerializeField] private float climbSpeed;
     bool canJump = true;
+    bool canTriple = true;
+    bool canShuffle = true;
 
     //The height a node needs to be above the player to be considered valid
     public float upLimit;
@@ -173,8 +175,10 @@ public class playerController : MonoBehaviour
 
             //If the player hits Left Shift, stop all current climb coroutines, and start a new one targeting the node the cursor is selecting
         if (Input.GetMouseButtonDown(1) && canJump) 
-            {
-                StopAllCoroutines();
+        {
+            StopAllCoroutines();
+            StartCoroutine(resetJump(2));
+            canJump = false;
                 if(isSlash){
                         SoundManager.PlaySwordSFX();//Plays sword SFX when moving
                 }
@@ -198,9 +202,11 @@ public class playerController : MonoBehaviour
                 StartCoroutine(fall(worldCursor.transform.position, climbSpeed));
             }
 
-        if(Input.GetKeyDown(KeyCode.Q) && canJump)
+        if(Input.GetKeyDown(KeyCode.Q) && canTriple)
         {
             StopAllCoroutines();
+            StartCoroutine(resetTriple(2));
+            canTriple = false;
             if (isSlash)
             {
                 SoundManager.PlaySwordSFX();//Plays sword SFX when moving                  
@@ -220,7 +226,7 @@ public class playerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && canJump)
+        if (Input.GetKeyDown(KeyCode.E) && canShuffle)
         {
             //If the current node is above the player, climbing
             if (worldCursor.transform.position.y >= transform.position.y)
@@ -229,6 +235,10 @@ public class playerController : MonoBehaviour
                 anim.SetBool("Jumped", true);
                 anim.SetBool("IsMidair", true);
                 anim.SetBool("IsGrounded", false);
+
+                StopAllCoroutines();
+                StartCoroutine(resetShuffle(2));
+                canShuffle = false;
                 if(transform.position.x >= worldCursor.transform.position.x)
                 {
                     StartCoroutine(climb(new Vector3[] { findStrafePos(true) }, climbSpeed * 3f));
@@ -374,7 +384,6 @@ public class playerController : MonoBehaviour
             //Resetting all of our variables, starting the animation curve at 0, and our starting position as our current position
             float pos = 0.0f;
             Vector3 startPos = transform.position;
-            canJump = false;
 
             //Particles
             jumpLand.Play();
@@ -440,7 +449,6 @@ public class playerController : MonoBehaviour
 
                 if (pos > 0.4f && !isSlash)
                 {
-                    canJump = true;
                     anim.SetBool("Jumped", false);
                     anim.SetBool("IsMidair", false);
                     anim.SetBool("IsGrounded", true);
@@ -448,7 +456,6 @@ public class playerController : MonoBehaviour
                 }
                 else if (pos > 0.6f)
                 {
-                    canJump = true;
                     anim.SetBool("Jumped", false);
                     anim.SetBool("IsMidair", false);
                     anim.SetBool("IsGrounded", true);
@@ -459,7 +466,6 @@ public class playerController : MonoBehaviour
                 yield return null;
             }
             childObj.SetActive(false);
-            canJump = true;
 
         }
 
@@ -478,7 +484,6 @@ public class playerController : MonoBehaviour
         //Resetting all of our variables, starting the animation curve at -0.1, and our starting position as our current position
         float pos = 0.0f;
         Vector3 startPos = transform.position;
-        canJump = false;
 
         jumpLand.Play(); // Particles play
 
@@ -539,7 +544,6 @@ public class playerController : MonoBehaviour
             if (pos > 0.4f)
             {
                 Debug.Log("fallOver");
-                canJump = true;
                 anim.SetBool("Jumped", false);
                 anim.SetBool("IsMidair", false);
                 anim.SetBool("IsGrounded", true);
@@ -556,7 +560,53 @@ public class playerController : MonoBehaviour
             yield return null;
         }
         childObj.SetActive(false);
-        canJump = true;
         //nodeManager.instance.updateNodes();
+    }
+
+    public IEnumerator resetJump(float timer)
+    {
+        while(timer >= 0)
+        {
+            timer -= Time.deltaTime;
+
+            if (timer < 0)
+            {
+                canJump = true;
+                Debug.Log("Jump Reset");
+                break;
+            }
+            yield return null;
+        }
+    }
+    public IEnumerator resetTriple(float timer)
+    {
+        while (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+
+            if (timer < 0)
+            {
+                canTriple = true;
+                Debug.Log("Triple Reset");
+                break;
+            }
+            yield return null;
+        }
+    }
+
+    public IEnumerator resetShuffle(float timer)
+    {
+        while (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+
+            if (timer < 0)
+            {
+                canShuffle = true;
+                Debug.Log("Shuffle Reset");
+                break;
+            }
+            yield return null;
+        }
     }
 }
