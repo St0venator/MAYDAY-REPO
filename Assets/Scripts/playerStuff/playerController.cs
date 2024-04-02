@@ -563,6 +563,7 @@ public class playerController : MonoBehaviour
         //nodeManager.instance.updateNodes();
     }
 
+    //Cooldown for jump
     public IEnumerator resetJump(float timer)
     {
         while(timer >= 0)
@@ -578,6 +579,7 @@ public class playerController : MonoBehaviour
             yield return null;
         }
     }
+    //Cooldown for Triple Jump
     public IEnumerator resetTriple(float timer)
     {
         while (timer >= 0)
@@ -594,6 +596,7 @@ public class playerController : MonoBehaviour
         }
     }
 
+    //Cooldown for Side Jump
     public IEnumerator resetShuffle(float timer)
     {
         while (timer >= 0)
