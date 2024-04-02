@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8716632455103414105
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -105.41197
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 47.02636
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.118433
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -4318571312361772713, guid: b3151f35e8a30c44eac87b7774a225cf, type: 3}
+    - target: {fileID: 919132149155446097, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
+      propertyPath: m_Name
+      value: Coral-Tube-Small
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a05e3df2fed979459372cc6d1089aae, type: 3}
