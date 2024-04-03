@@ -61,13 +61,13 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (isStunned)
+        if (isStunned)
         {
+            StopAllCoroutines();
             if (stunTimer <= 0)
             {
                 isStunned = false;
                 stunTimer = 3.0f;
-
             }
             else
             {
@@ -75,8 +75,7 @@ public class playerController : MonoBehaviour
                 Debug.Log(stunTimer);
             }
             Debug.Log(isStunned);
-
-        }*/
+        }
 
         OXY.oxygenDecrement(Time.deltaTime);
         oxygenText.text = "Oxygen: " + OXY.displayOxygen();
@@ -296,7 +295,7 @@ public class playerController : MonoBehaviour
 
             newPos -= new Vector3(0, 30);
 
-            
+            isStunned = true;
 
             Ray zRay = new Ray(newPos, new Vector3(0, 0, 1));
 
@@ -330,6 +329,8 @@ public class playerController : MonoBehaviour
             Vector3 newPos = currPos;
 
             newPos -= new Vector3(0, 25);
+            
+            isStunned = true;
 
             Ray mRay = new Ray(newPos, new Vector3(0, 0, 1));
 
