@@ -16117,6 +16117,10 @@ PrefabInstance:
       value: Player-New
       objectReference: {fileID: 0}
     - target: {fileID: 741581703789166747, guid: bf8e2b014a44218428a7034e5993c96a, type: 3}
+      propertyPath: oxygenText
+      value: 
+      objectReference: {fileID: 1516753397}
+    - target: {fileID: 741581703789166747, guid: bf8e2b014a44218428a7034e5993c96a, type: 3}
       propertyPath: worldCursor
       value: 
       objectReference: {fileID: 983599547}
@@ -17196,6 +17200,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8367280911211206863, guid: c9a60d5ed91d32a4b8834ca0f45c078a, type: 3}
   m_PrefabInstance: {fileID: 1514393702}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1516753397 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8263002501699511926, guid: 0dcc068420d6ef042a153e5eed4c3362, type: 3}
+  m_PrefabInstance: {fileID: 1986287744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1518528349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20761,6 +20776,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: aiSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 7763614053878251827, guid: 7a472e3a32be36948abd2bbbf456c7bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20990,11 +21009,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 107
       objectReference: {fileID: 0}
     - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 185.1
+      value: 175.6
       objectReference: {fileID: 0}
     - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
       propertyPath: m_LocalPosition.z
