@@ -21,22 +21,30 @@ public class mousePos : MonoBehaviour
         playerRef = GameObject.FindGameObjectWithTag("Player");
         playerPos = playerRef.transform.position;
         cam = Camera.main;
-        localHitPoint = Vector3.zero;
+        //localHitPoint = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        //transform.position = cam.transform.position;
+
         playerPos = playerRef.transform.position;
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
+        Debug.DrawRay(cam.gameObject.transform.position, ray.direction);
+
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, mask))
         {
+            
             localHitPoint = hit.point;
+            transform.position = new Vector3(hit.point.x, hit.point.y, -30);
+            //Debug.Log(localHitPoint.ToString());
 
             Ray zRay = new Ray(new Vector3(localHitPoint.x, localHitPoint.y), new Vector3(0, 0, 1));
+            
 
             if (Physics.Raycast(zRay, out RaycastHit zHit, float.MaxValue, mask))
             {
@@ -45,7 +53,7 @@ public class mousePos : MonoBehaviour
         }
         
 
-        transform.position = temp;
+        //transform.position = temp;
 
         Vector3 diff = transform.position - playerPos;
 

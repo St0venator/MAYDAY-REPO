@@ -37,7 +37,7 @@ public class playerController : MonoBehaviour
     Rigidbody rb;
     Animator anim;
     [SerializeField] GameObject worldCursor;
-    [SerializeField] GameObject childObj;
+    //[SerializeField] GameObject childObj;
     [SerializeField] GameObject bulletRef;
     [SerializeField] TextMeshProUGUI oxygenText;
     [SerializeField] oxygenManager OXY;
@@ -188,7 +188,6 @@ public class playerController : MonoBehaviour
                 //If the current node is above the player, climbing
                 if (worldCursor.transform.position.y >= transform.position.y)
                 {
-                    
                     StartCoroutine(climb(new Vector3[] { worldCursor.transform.position}, climbSpeed));
                 }
                 //Otherwise, fall
@@ -199,7 +198,7 @@ public class playerController : MonoBehaviour
                 anim.SetBool("Jumped", true);
                 anim.SetBool("IsMidair", true);
                 anim.SetBool("IsGrounded", false);
-                StartCoroutine(fall(worldCursor.transform.position, climbSpeed));
+                //StartCoroutine(fall(worldCursor.transform.position, climbSpeed));
             }
 
         if(Input.GetKeyDown(KeyCode.Q) && canTriple)
@@ -370,6 +369,7 @@ public class playerController : MonoBehaviour
     {
         foreach(Vector3 destIter in destList)
         {
+            Debug.Log(destIter.ToString());
             if(destIter == Vector3.zero)
             {
                 break;
@@ -392,7 +392,7 @@ public class playerController : MonoBehaviour
             //Keeping the player in front of the wall, from the camera's POV by moving the player slightly closer to the camera
             Vector3 dest = Vector3.MoveTowards(destIter, Camera.main.transform.position, 0.1f);
 
-            Vector3 destDist = dest - startPos;
+            Vector3 destDist = destIter - startPos;
 
             //GetComponent<oxygenController>().reduceOxygen(Mathf.Abs(destDist.magnitude));
 
@@ -412,9 +412,9 @@ public class playerController : MonoBehaviour
 
                 dest = startPos + destDist;
 
-                Physics.Raycast(new Ray(new Vector3(dest.x, dest.y), new Vector3(0, 0, 1)), out RaycastHit hit, float.MaxValue);
+                //Physics.Raycast(new Ray(new Vector3(dest.x, dest.y), new Vector3(0, 0, 1)), out RaycastHit hit, float.MaxValue);
 
-                dest.z = hit.point.z;
+                //dest.z = hit.point.z;
             }
 
             //Calculating the midpoint between the current and target nodes, and them moving it away from the camera
@@ -430,7 +430,6 @@ public class playerController : MonoBehaviour
 
             if (innerIsSlash)
             {
-                childObj.SetActive(true);
             }
             //LERPing towards "dest" until we reach the end of our animation curve
             while (pos < 1f)
@@ -442,7 +441,6 @@ public class playerController : MonoBehaviour
 
                 if (pos > 0.2f && innerIsSlash)
                 {
-                    childObj.SetActive(false);
                     innerIsSlash = false;
                     isSlash = false;
                 }
@@ -465,7 +463,6 @@ public class playerController : MonoBehaviour
 
                 yield return null;
             }
-            childObj.SetActive(false);
 
         }
 
@@ -551,15 +548,16 @@ public class playerController : MonoBehaviour
                 jumpLand.Stop(); // Particles
             }
 
+            /*
             if(pos >= 0.8f)
             {
                 CinemachineVirtualCamera cineCam = GameObject.FindGameObjectWithTag("virtualCamera").GetComponent<CinemachineVirtualCamera>();
                 cineCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
             }
+            */
 
             yield return null;
         }
-        childObj.SetActive(false);
         //nodeManager.instance.updateNodes();
     }
 
