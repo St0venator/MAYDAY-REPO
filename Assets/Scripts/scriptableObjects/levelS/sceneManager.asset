@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: sceneManager
   m_EditorClassIdentifier: 
   allScenes:
-  - yknow
+  - level1
+  - level2
+  - level3
+  - level4
+  - level5
   nextScene: yknow

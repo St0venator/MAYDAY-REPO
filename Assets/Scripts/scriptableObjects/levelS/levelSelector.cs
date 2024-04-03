@@ -31,14 +31,12 @@ public class levelSelector : ScriptableObject
 
     public void preSetScenes()
     {
-        allScenes.Add("blockGame");
-        allScenes.Add("goatGame");
-        allScenes.Add("lungs");
-        allScenes.Add("negaMungus");
-        allScenes.Add("quintana");
-        allScenes.Add("skullFace");
-        allScenes.Add("texus");
-        allScenes.Add("yknow");
+        allScenes.Add("level1");
+        allScenes.Add("level2");
+        allScenes.Add("level3");
+        allScenes.Add("level4");
+        allScenes.Add("level5");
+       
     }
 
     private void Awake()
