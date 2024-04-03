@@ -2564,6 +2564,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 325dd7ee7ba67674585fc4f335963b6f, type: 3}
+--- !u!114 &173563422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7125702647652236376, guid: 325dd7ee7ba67674585fc4f335963b6f, type: 3}
+  m_PrefabInstance: {fileID: 173563421}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3957b2f525886fa46ad518020a859f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &179509521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 292164830305724558, guid: a499c8511739617449716bad23027f33, type: 3}
@@ -12619,6 +12630,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7364562589721937419, guid: 7a472e3a32be36948abd2bbbf456c7bb, type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 173563422}
+    - target: {fileID: 7364562589721937419, guid: 7a472e3a32be36948abd2bbbf456c7bb, type: 3}
+      propertyPath: crabby
+      value: 
+      objectReference: {fileID: 5882171673188909474, guid: a2abcb0cac3e48047b5f9a326d7ee419, type: 3}
     - target: {fileID: 7763614053878251827, guid: 7a472e3a32be36948abd2bbbf456c7bb, type: 3}
       propertyPath: m_Name
       value: aiSpawner
