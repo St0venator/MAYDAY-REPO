@@ -56,7 +56,7 @@ public class MenuManager : MonoBehaviour
             float progress = Mathf.Clamp01(operation.progress/ 0.9f);
             Loadslider.value = progress;
 
-            yield return new WaitForSeconds(3f); // Small Waiting Delay for levels
+            //yield return new WaitForSeconds(3f); // Small Waiting Delay for levels
             yield return null;
         }
     }
