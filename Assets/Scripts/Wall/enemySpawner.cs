@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditorInternal;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,8 +19,9 @@ public class enemySpawner : MonoBehaviour
     void Start()
     {
         spawnStationary();
-        StartCoroutine(spawnRandom());
-        dangerUI.gameObject.SetActive(false); // Turn of indicator
+        //StartCoroutine(spawnRandom());
+        dangerUI.gameObject.SetActive(false); // Turn off indicator
+        //InvokeRepeating("spawnAvalanche",2,4);
     }
 
     // Update is called once per frame
@@ -63,7 +64,8 @@ public class enemySpawner : MonoBehaviour
 
             if(randObj == 0)
             {
-                spawnMine();
+                //spawnMine();
+                Debug.Log("Spawn mine");
             }
             else if(randObj == 1)
             {
@@ -72,6 +74,7 @@ public class enemySpawner : MonoBehaviour
         }
     }
 
+    /*
     void spawnMine()
     {
         bool validSpawn = false;
@@ -98,7 +101,7 @@ public class enemySpawner : MonoBehaviour
 
         
     }
-
+    */
     void spawnWhirlpool()
     {
         float spawnX = Random.Range(-100, 100);
@@ -138,27 +141,18 @@ public class enemySpawner : MonoBehaviour
     {
         Debug.Log("called");
         dangerUI.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.10f); //Flash 1
-        dangerUI.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.10f);
-        dangerUI.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.10f); //Flash 2
-        dangerUI.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.10f);
-        dangerUI.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.10f); // Flash 3
-        dangerUI.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.10f);
-        dangerUI.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.10f); // Flash 4
-        dangerUI.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.10f);
-        dangerUI.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.10f); // Flash 5
-        dangerUI.gameObject.SetActive(false);
 
-        StopCoroutine(spawnDangerIcon());
+        for (int i = 0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(0.10f); // Flash duration
+            dangerUI.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.10f); // Delay between flashes
+            dangerUI.gameObject.SetActive(true);
+        }
+
+        dangerUI.gameObject.SetActive(false); // Ensure UI is turned off at the end
     }
+
 
     void moveDangerIcon()
     {
