@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 5128067590180287547}
   m_Layer: 5
   m_Name: DangerUI
-  m_TagString: UIPos
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
