@@ -39,6 +39,7 @@ public class AISpawner : MonoBehaviour
         }
     }
 
+    
     void SpawnCrab()
     {
         bool validSpawn = false;
@@ -63,7 +64,7 @@ public class AISpawner : MonoBehaviour
 
         Instantiate(crabby, spawnPos, Quaternion.identity);
     }
-
+    
     void SpawnSquid()
     {
         bool validSpawn = false;

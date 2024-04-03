@@ -15,7 +15,7 @@ public class missileSpawner : MonoBehaviour
 
     void SpawnMissile()
     {
-        spawnInterval = Random.Range(15.0f, 30.0f);
+        spawnInterval = Random.Range(5f, 10f);
         Invoke("SpawnMissile", spawnInterval);
         Debug.Log("Missle Inbound: " + spawnInterval);
 

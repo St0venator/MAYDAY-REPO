@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 9, y: 9, z: 1}
+  m_LocalScale: {x: 9, y: 9, z: 2.9946635}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1758952542715575393}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LS: {fileID: 11400000, guid: deefccbe3da94e743b9f5f3b65883e47, type: 2}
-  OXY: {fileID: 0}
+  OXY: {fileID: 11400000, guid: dcb38d75d4601824298ca8af683ca54e, type: 2}
 --- !u!1 &5512360976452836241
 GameObject:
   m_ObjectHideFlags: 0
