@@ -59,7 +59,7 @@ public class AISpawner : MonoBehaviour
             }
         } while(!validSpawn);
 
-        Vector3 spawnPos = new Vector3(xRange, yRange, 70);
+        Vector3 spawnPos = new Vector3(xRange, yRange, -35);
 
         Instantiate(crabby, spawnPos, Quaternion.identity);
     }
@@ -84,7 +84,7 @@ public class AISpawner : MonoBehaviour
             }
         } while(!validSpawn);
 
-        Vector3 spawnPos = new Vector3(xRange, yRange, 70);
+        Vector3 spawnPos = new Vector3(xRange, yRange, -35);
 
         GameObject newInky = Instantiate(inky, spawnPos, Quaternion.identity);
         newInky.transform.Rotate(new Vector3(270, 0, 0));
