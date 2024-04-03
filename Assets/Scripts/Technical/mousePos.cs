@@ -11,6 +11,7 @@ public class mousePos : MonoBehaviour
     public float range;
     public Vector3 jumpPos2;
     public Vector3 jumpPos3;
+    public LayerMask noGoLayer;
     GameObject playerRef;
     Vector3 playerPos;
     Vector2 localHitPoint;
@@ -21,22 +22,30 @@ public class mousePos : MonoBehaviour
         playerRef = GameObject.FindGameObjectWithTag("Player");
         playerPos = playerRef.transform.position;
         cam = Camera.main;
-        localHitPoint = Vector3.zero;
+        //localHitPoint = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        //transform.position = cam.transform.position;
+
         playerPos = playerRef.transform.position;
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
+        Debug.DrawRay(cam.gameObject.transform.position, ray.direction);
+
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, mask))
         {
+            
             localHitPoint = hit.point;
+            transform.position = new Vector3(hit.point.x, hit.point.y, -30);
+            //Debug.Log(localHitPoint.ToString());
 
             Ray zRay = new Ray(new Vector3(localHitPoint.x, localHitPoint.y), new Vector3(0, 0, 1));
+            
 
             if (Physics.Raycast(zRay, out RaycastHit zHit, float.MaxValue, mask))
             {
@@ -45,15 +54,32 @@ public class mousePos : MonoBehaviour
         }
         
 
-        transform.position = temp;
+        //transform.position = temp;
 
         Vector3 diff = transform.position - playerPos;
 
-        Vector3 twoPos = transform.position + diff;
-        Vector3 threePos = transform.position + (2f * diff);
+        jumpPos2 = transform.position + diff;
+        jumpPos3 = transform.position + (2f * diff);
 
+        Collider[] hitColliders1 = Physics.OverlapSphere(jumpPos2, 1f, noGoLayer);
+        Collider[] hitColliders2 = Physics.OverlapSphere(jumpPos3, 1f, noGoLayer);
+
+        if(hitColliders1.Length > 0)
+        {
+            jumpPos2 = Vector3.zero;
+        }
+
+        if(hitColliders2.Length > 0)
+        {
+            jumpPos3 = Vector3.zero;
+        }
+
+
+
+        /*
         Ray twoRay = new Ray(new Vector3(twoPos.x, twoPos.y), new Vector3(0, 0, 1));
         Ray threeRay = new Ray(new Vector3(threePos.x, threePos.y), new Vector3(0, 0, 1));
+        
 
         if (Physics.Raycast(twoRay, out RaycastHit twoHit, float.MaxValue, mask))
         {
@@ -72,7 +98,7 @@ public class mousePos : MonoBehaviour
         {
             jumpPos3 = Vector3.zero;
         }
-
+        */
     }
 
     Vector3 clampPos(Vector3 startPos, int r)

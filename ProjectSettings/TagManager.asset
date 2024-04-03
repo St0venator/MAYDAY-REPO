@@ -12,6 +12,7 @@ TagManager:
   - virtualCamera
   - UIPos
   - AIMovem
+  - noGoZone
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Wall
   - Unwalkable
   - player
-  - 
+  - noGoLayer
   - 
   - 
   - 
