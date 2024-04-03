@@ -63,7 +63,7 @@ public class enemySpawner : MonoBehaviour
 
             if(randObj == 0)
             {
-                spawnMine();
+                //spawnMine(); //turn off mine spawn
             }
             else if(randObj == 1)
             {
@@ -72,6 +72,7 @@ public class enemySpawner : MonoBehaviour
         }
     }
 
+    /*
     void spawnMine()
     {
         bool validSpawn = false;
@@ -98,6 +99,7 @@ public class enemySpawner : MonoBehaviour
 
         
     }
+    */
 
     void spawnWhirlpool()
     {
