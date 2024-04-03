@@ -37,7 +37,8 @@ public class MenuManager : MonoBehaviour
     //This method will take an input of a scene name then take you to that scene
     public void ToScene(string scene)
     {
-        LS.changeScenes(this);
+        //LS.changeScenes(this);
+        SceneManager.LoadScene(scene);
     }
     #endregion
 
