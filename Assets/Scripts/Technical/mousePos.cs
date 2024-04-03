@@ -11,6 +11,7 @@ public class mousePos : MonoBehaviour
     public float range;
     public Vector3 jumpPos2;
     public Vector3 jumpPos3;
+    public LayerMask noGoLayer;
     GameObject playerRef;
     Vector3 playerPos;
     Vector2 localHitPoint;
@@ -59,6 +60,21 @@ public class mousePos : MonoBehaviour
 
         jumpPos2 = transform.position + diff;
         jumpPos3 = transform.position + (2f * diff);
+
+        Collider[] hitColliders1 = Physics.OverlapSphere(jumpPos2, 1f, noGoLayer);
+        Collider[] hitColliders2 = Physics.OverlapSphere(jumpPos3, 1f, noGoLayer);
+
+        if(hitColliders1.Length > 0)
+        {
+            jumpPos2 = Vector3.zero;
+        }
+
+        if(hitColliders2.Length > 0)
+        {
+            jumpPos3 = Vector3.zero;
+        }
+
+
 
         /*
         Ray twoRay = new Ray(new Vector3(twoPos.x, twoPos.y), new Vector3(0, 0, 1));
