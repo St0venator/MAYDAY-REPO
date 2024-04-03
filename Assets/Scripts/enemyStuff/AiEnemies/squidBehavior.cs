@@ -26,6 +26,9 @@ public class squidBehavior : MonoBehaviour
     IEnumerator Swimming()
     {
         var swimP = transform.position;
+        var swimP1X = Random.Range(swimP.x - 15, swimP.x + 15);
+        var swimP1Y = Random.Range(swimP.y - 15, swimP.y + 15);
+        swimP1 = new Vector3(swimP1X, swimP1Y, 70.0f);
         yield return StartCoroutine(Swim(transform, swimP, swimP1, 3.0f));
         yield return StartCoroutine(Swim(transform, swimP1, swimP, 3.0f));
         while(true)
