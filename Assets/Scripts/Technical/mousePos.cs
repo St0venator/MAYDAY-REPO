@@ -57,11 +57,13 @@ public class mousePos : MonoBehaviour
 
         Vector3 diff = transform.position - playerPos;
 
-        Vector3 twoPos = transform.position + diff;
-        Vector3 threePos = transform.position + (2f * diff);
+        jumpPos2 = transform.position + diff;
+        jumpPos3 = transform.position + (2f * diff);
 
+        /*
         Ray twoRay = new Ray(new Vector3(twoPos.x, twoPos.y), new Vector3(0, 0, 1));
         Ray threeRay = new Ray(new Vector3(threePos.x, threePos.y), new Vector3(0, 0, 1));
+        
 
         if (Physics.Raycast(twoRay, out RaycastHit twoHit, float.MaxValue, mask))
         {
@@ -80,7 +82,7 @@ public class mousePos : MonoBehaviour
         {
             jumpPos3 = Vector3.zero;
         }
-
+        */
     }
 
     Vector3 clampPos(Vector3 startPos, int r)
