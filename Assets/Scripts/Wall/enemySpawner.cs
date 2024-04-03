@@ -21,6 +21,7 @@ public class enemySpawner : MonoBehaviour
         spawnStationary();
         StartCoroutine(spawnRandom());
         dangerUI.gameObject.SetActive(false); // Turn of indicator
+        spawnMine();
     }
 
     // Update is called once per frame
@@ -72,7 +73,6 @@ public class enemySpawner : MonoBehaviour
         }
     }
 
-    /*
     void spawnMine()
     {
         bool validSpawn = false;
@@ -86,20 +86,21 @@ public class enemySpawner : MonoBehaviour
             
             Ray zRay = new Ray(new Vector3(xRange, yRange), new Vector3(0, 0, 1));
 
-            if (Physics.Raycast(zRay, out RaycastHit zHit, float.MaxValue, mask))
+            Collider[] hitColliders1 = Physics.OverlapSphere(new Vector3(xRange, yRange, -30), 1f, mask);
+
+            if(hitColliders1.Length > 0)
             {
                 validSpawn = true;
-                zPos = zHit.point.z;
             }
+
         } while(!validSpawn);
 
-        Vector3 spawnPos = new Vector3(xRange, yRange, zPos);
+        Vector3 spawnPos = new Vector3(xRange, yRange, -30);
 
         Instantiate(mine, spawnPos, Quaternion.identity);
 
         
     }
-    */
 
     void spawnWhirlpool()
     {
