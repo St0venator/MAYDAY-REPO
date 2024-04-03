@@ -63,7 +63,7 @@ public class enemySpawner : MonoBehaviour
 
             if(randObj == 0)
             {
-                //spawnMine();
+                //spawnMine(); //turn off mine spawn
             }
             else if(randObj == 1)
             {
