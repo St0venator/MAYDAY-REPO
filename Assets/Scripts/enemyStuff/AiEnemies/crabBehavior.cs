@@ -11,15 +11,19 @@ public class crabBehavior : MonoBehaviour
 
     //attributes of the crab
     private float crabDistancing = 7f;
-    private float crabSightRange = 30f;
+    private float crabSightRange = 25f;
     private float crabAttackRange = 9f;
     private float timer = 5f;
     private float bulletTime = 2f;
     public GameObject enemyBullet;
     public GameObject shootingPos;
-    //bool alreadyAttacked = false;
+    bool cantChase = false;
+    float stunTimer = 5f;
     //bool isCrabStunned = false;
     public bool inAttackRange, inSightRange, inGround;
+
+    //Animotor chit
+    [SerializeField]private Animator crabAnim;
 
     //patrol variables
     [SerializeField]private Vector3 swimP; 
@@ -28,6 +32,7 @@ public class crabBehavior : MonoBehaviour
     //Reference to other objects
     //[SerializeField] private MeshCollider wall;
     [SerializeField] private LayerMask player;
+    [SerializeField] private playerController playerObj;
     //[SerializeField] private GameObject aStar;
     [SerializeField]private Pathfinding pathFinder;
     
@@ -36,9 +41,11 @@ public class crabBehavior : MonoBehaviour
 
     void Awake(){
         player = LayerMask.GetMask("player");
+        crabAnim = GetComponent<Animator>();
         pathFinder = GameObject.Find("A_").GetComponent<Pathfinding>();
         GetComponent<Unit>().enabled = false;
         pathFinder.pausePath = true;
+        playerObj = FindObjectOfType<playerController>();
     }
 
     void Start()
@@ -52,15 +59,35 @@ public class crabBehavior : MonoBehaviour
         inAttackRange = Physics.CheckSphere(transform.position, crabAttackRange, player);
         //inGround = Physics.CheckSphere(transform.position, crabDistancing, wall);
 
-        if(!inSightRange && !inAttackRange) CrabPatrol();
-
-        if(inSightRange && !inAttackRange) CrabChase();
-
-        if(inSightRange && inAttackRange) CrabAttack();
-
-        if(inGround)
+        if(cantChase && inSightRange)
+        { 
+            Waiting();
+        }
+        else
         {
+            if(!inSightRange && !inAttackRange) CrabPatrol();
 
+            if(inSightRange && !inAttackRange) CrabChase();
+
+            if(inSightRange && inAttackRange) CrabAttack();
+        }
+        
+    }
+
+    void Waiting()
+    {
+        while(cantChase)
+        {
+            if (stunTimer <= 0)
+            {
+                GetComponent<Unit>().enabled = true;
+                cantChase = false;
+                stunTimer = 3.0f;
+            }
+            else
+            {
+                stunTimer -= Time.deltaTime;
+            }
         }
     }
 
@@ -93,18 +120,18 @@ public class crabBehavior : MonoBehaviour
 
     void CrabAttack()
     {
-        bulletTime -= Time.deltaTime;
-        if(bulletTime > 0) return;
-
-        bulletTime = timer;
-
-        Rigidbody bulletRb = Instantiate(enemyBullet, shootingPos.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-        bulletRb.AddForce(transform.forward * 50f, ForceMode.Impulse);
+        crabAnim.SetBool("Attack", true);
+        GetComponent<Unit>().enabled = false;
     }
 
-    void CrabStunned()
+    void OnTriggerEnter(Collider other)
     {
-
+        if (other.gameObject.CompareTag("Player"))
+        {
+            cantChase = true;
+            playerObj.isStunned = true;
+            GetComponent<Unit>().enabled = false;
+        }
     }
 
     IEnumerator StartWalking()

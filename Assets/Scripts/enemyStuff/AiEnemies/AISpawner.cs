@@ -22,7 +22,7 @@ public class AISpawner : MonoBehaviour
 
     void SpawnLocation()
     {
-        int spawnNum = Random.Range(5, 10);
+        int spawnNum = Random.Range(4, 10);
 
         for(int i = 0; i < spawnNum; i++)
         {
@@ -51,19 +51,22 @@ public class AISpawner : MonoBehaviour
             xRange = Random.Range(x, grid.gridSizeX/2);
             yRange = Random.Range(0, grid.gridSizeY);
 
-            Ray zRay = new Ray(new Vector3(xRange, yRange), new Vector3(0, 0, 1));
+            Collider[] hitColliders1 = Physics.OverlapSphere(new Vector3(xRange, yRange, -30), 1f, mask);
+
 
             Collider[] hitColliders1 = Physics.OverlapSphere(new Vector3(xRange, yRange, -30), 1f, mask);
 
             if (hitColliders1.Length > 0)
+
             {
                 validSpawn = true;
             }
-        } while(!validSpawn);
 
-        Vector3 spawnPos = new Vector3(xRange, yRange, -35);
+        Vector3 spawnPos = new Vector3(xRange, yRange, -31);
 
-        Instantiate(crabby, spawnPos, Quaternion.identity);
+        GameObject newCrabby = Instantiate(crabby, spawnPos, Quaternion.identity);
+        newCrabby.transform.Rotate(new Vector3(0, 90, 0));
+        }while(!validSpawn);
     }
 
     void SpawnSquid()
@@ -80,15 +83,17 @@ public class AISpawner : MonoBehaviour
 
             Collider[] hitColliders1 = Physics.OverlapSphere(new Vector3(xRange, yRange, -30), 1f, mask);
 
-            if (hitColliders1.Length > 0)
+
+            if(hitColliders1.Length > 0)
+
             {
                 validSpawn = true;
             }
-        } while(!validSpawn);
 
-        Vector3 spawnPos = new Vector3(xRange, yRange, -35);
+        Vector3 spawnPos = new Vector3(xRange, yRange, -31);
 
         GameObject newInky = Instantiate(inky, spawnPos, Quaternion.identity);
-        newInky.transform.Rotate(new Vector3(270, 0, 0));
+        newInky.transform.Rotate(new Vector3(90, 0, 0));
+        }while(!validSpawn);
     }
 }
