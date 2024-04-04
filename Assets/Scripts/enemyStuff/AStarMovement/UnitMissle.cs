@@ -9,7 +9,7 @@ public class UnitMissle : MonoBehaviour{
 
 	[SerializeField]private GameObject player;
 	[SerializeField]private Transform target;
-	[SerializeField]private float speed = 10;
+	[SerializeField]private float speed = 12;
 	[SerializeField]private float turnSpeed = 1;
 	[SerializeField]private float turnDst = 7;
 	[SerializeField]private float stoppingDst = 5;

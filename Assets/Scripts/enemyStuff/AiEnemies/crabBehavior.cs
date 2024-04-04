@@ -11,7 +11,7 @@ public class crabBehavior : MonoBehaviour
 
     //attributes of the crab
     private float crabDistancing = 7f;
-    private float crabSightRange = 30f;
+    private float crabSightRange = 25f;
     private float crabAttackRange = 9f;
     private float timer = 5f;
     private float bulletTime = 2f;

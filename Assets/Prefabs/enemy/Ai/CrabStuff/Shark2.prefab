@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 471692072708642619, guid: bf8e2b014a44218428a7034e5993c96a, type: 3}
   target: {fileID: 0}
-  speed: 20
+  speed: 8
   turnSpeed: 3
   turnDst: 5
   stoppingDst: 10

@@ -8,7 +8,7 @@ public class Unit : MonoBehaviour {
 
 	[SerializeField]private GameObject player;
 	[SerializeField]private Transform target;
-	[SerializeField]private float speed = 20;
+	[SerializeField]private float speed = 8;
 	[SerializeField]private float turnSpeed = 3;
 	[SerializeField]private float turnDst = 5;
 	[SerializeField]private float stoppingDst = 10;
