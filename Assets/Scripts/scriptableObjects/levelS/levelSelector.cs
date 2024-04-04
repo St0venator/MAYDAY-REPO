@@ -34,7 +34,6 @@ public class levelSelector : ScriptableObject
         allScenes.Add("level1");
         allScenes.Add("level2");
         allScenes.Add("level3");
-        allScenes.Add("level4");
         allScenes.Add("level5");
        
     }
