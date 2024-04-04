@@ -6280,6 +6280,14 @@ PrefabInstance:
       value: winCon
       objectReference: {fileID: 0}
     - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12.8259
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 29.8296
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -31.3
       objectReference: {fileID: 0}
@@ -19583,6 +19591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player-New
       objectReference: {fileID: 0}
+    - target: {fileID: 741581703789166746, guid: bf8e2b014a44218428a7034e5993c96a, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 741581703789166747, guid: bf8e2b014a44218428a7034e5993c96a, type: 3}
       propertyPath: oxygenText
       value: 
@@ -29025,6 +29037,10 @@ PrefabInstance:
     - target: {fileID: 793317060940408665, guid: 69d3f814c9f62a946a181d8f9ff0c66f, type: 3}
       propertyPath: m_Name
       value: worldCursor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2305361533000093776, guid: 69d3f814c9f62a946a181d8f9ff0c66f, type: 3}
+      propertyPath: noGoLayer.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 4108450301110452340, guid: 69d3f814c9f62a946a181d8f9ff0c66f, type: 3}
       propertyPath: m_LocalPosition.x

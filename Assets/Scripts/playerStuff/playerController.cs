@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
+    IEnumerator fallIEn;
+    IEnumerator climbIEn;
+    public LayerMask noGoLayer;
     //Particles
     public ParticleSystem jumpLand;
     public ParticleSystem explosion;
@@ -63,7 +66,13 @@ public class playerController : MonoBehaviour
     {
         if (isStunned)
         {
-            StopAllCoroutines();
+            if(fallIEn != null){
+                StopCoroutine(fallIEn);
+            }
+            if(climbIEn != null){
+                StopCoroutine(climbIEn);
+            }
+
             anim.SetBool("Stunned", true);
             if (stunTimer <= 0)
             {
@@ -168,6 +177,9 @@ public class playerController : MonoBehaviour
             isSlash = true;
         }
 
+        if(Input.GetKeyDown(KeyCode.Z)){
+            transform.position = new Vector3(transform.position.x, transform.position.y, -30);
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftControl) && canJump)
             {
@@ -186,11 +198,16 @@ public class playerController : MonoBehaviour
             //If the player hits Left Shift, stop all current climb coroutines, and start a new one targeting the node the cursor is selecting
         if (Input.GetMouseButtonDown(1) && canJump) 
         {
-            StopAllCoroutines();
+            if(fallIEn != null){
+                StopCoroutine(fallIEn);
+            }
+            if(climbIEn != null){
+                StopCoroutine(climbIEn);
+            }
             StartCoroutine(resetJump(2));
             canJump = false;
                 if(isSlash){
-                        SoundManager.PlaySwordSFX();//Plays sword SFX when moving
+                    SoundManager.PlaySwordSFX();//Plays sword SFX when moving
                 }
                 else{
                     SoundManager.PlayJumpSound();//Plays jump SFX when moving
@@ -198,12 +215,22 @@ public class playerController : MonoBehaviour
                 //If the current node is above the player, climbing
                 if (worldCursor.transform.position.y >= transform.position.y)
                 {
-                    StartCoroutine(climb(new Vector3[] { worldCursor.transform.position}, climbSpeed));
+                    
+                    Collider[] hitColliders1 = Physics.OverlapSphere(new Vector3(worldCursor.transform.position.x, worldCursor.transform.position.y, -30), 1f, noGoLayer);
+                    Debug.Log(hitColliders1.Length);
+                    if(hitColliders1.Length == 0){
+                        StartCoroutine(climb(new Vector3[] { new Vector3(worldCursor.transform.position.x, worldCursor.transform.position.y, -30)}, climbSpeed));
+                    }
                 }
                 //Otherwise, fall
                 else
                 {
-                    StartCoroutine(fall(worldCursor.transform.position, climbSpeed));
+                    Collider[] hitColliders1 = Physics.OverlapSphere(new Vector3(worldCursor.transform.position.x, worldCursor.transform.position.y, -30), 1f, noGoLayer);
+                    Debug.Log(hitColliders1.Length);
+                    if(hitColliders1.Length == 0){
+                        StartCoroutine(fall(new Vector3(worldCursor.transform.position.x, worldCursor.transform.position.y, -30), climbSpeed));
+                    }
+                   
                 }
                 anim.SetBool("Jumped", true);
                 anim.SetBool("IsMidair", true);
@@ -213,7 +240,12 @@ public class playerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Q) && canTriple)
         {
-            StopAllCoroutines();
+            if(fallIEn != null){
+                StopCoroutine(fallIEn);
+            }
+            if(climbIEn != null){
+                StopCoroutine(climbIEn);
+            }
             StartCoroutine(resetTriple(2));
             canTriple = false;
             if (isSlash)
@@ -231,7 +263,11 @@ public class playerController : MonoBehaviour
                 anim.SetBool("Jumped", true);
                 anim.SetBool("IsMidair", true);
                 anim.SetBool("IsGrounded", false);
-                StartCoroutine(climb(new Vector3[] { worldCursor.transform.position, posScript.jumpPos2, posScript.jumpPos3}, climbSpeed * 3f));
+                //StartCoroutine(climb(new Vector3[] { worldCursor.transform.position, posScript.jumpPos2, posScript.jumpPos3}, climbSpeed * 3f));
+                Vector3 vec1 = new Vector3(worldCursor.transform.position.x, worldCursor.transform.position.y, -30);
+                Vector3 vec2 = new Vector3(posScript.jumpPos2.x, posScript.jumpPos2.y, -30);
+                Vector3 vec3 = new Vector3(posScript.jumpPos3.x, posScript.jumpPos3.y, -30);
+                StartCoroutine(climb(new Vector3[] {vec1, vec2, vec3}, climbSpeed * 3f));
             }
         }
 
@@ -245,16 +281,21 @@ public class playerController : MonoBehaviour
                 anim.SetBool("IsMidair", true);
                 anim.SetBool("IsGrounded", false);
 
-                StopAllCoroutines();
+                if(fallIEn != null){
+                    StopCoroutine(fallIEn);
+                }
+                if(climbIEn != null){
+                    StopCoroutine(climbIEn);
+                }
                 StartCoroutine(resetShuffle(2));
                 canShuffle = false;
                 if(transform.position.x >= worldCursor.transform.position.x)
                 {
-                    StartCoroutine(climb(new Vector3[] { findStrafePos(true) }, climbSpeed * 3f));
+                    StartCoroutine(climb(new Vector3[] { new Vector3(findStrafePos(true).x, findStrafePos(true).x, -30) }, climbSpeed * 3f));
                 }
                 else
                 {
-                    StartCoroutine(climb(new Vector3[] { findStrafePos(false) }, climbSpeed * 3f));
+                    StartCoroutine(climb(new Vector3[] { new Vector3(findStrafePos(true).x, findStrafePos(true).x, -30) }, climbSpeed * 3f));
                 }
             }
         }
@@ -317,7 +358,12 @@ public class playerController : MonoBehaviour
                 Debug.Log(currPos.x + " " + currPos.y + " " + currPos.z);
                 Debug.Log(newPos.x + " " + newPos.y + " " + newPos.z);
 
-                StopAllCoroutines();
+                if(fallIEn != null){
+                    StopCoroutine(fallIEn);
+                }
+                if(climbIEn != null){
+                    StopCoroutine(climbIEn);
+                }
                 StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
             }
             BoxCollider col;
@@ -350,13 +396,23 @@ public class playerController : MonoBehaviour
             {
                 newPos.y = mHit.point.y;
 
-                StopAllCoroutines();
+                if(fallIEn != null){
+                    StopCoroutine(fallIEn);
+                }
+                if(climbIEn != null){
+                    StopCoroutine(climbIEn);
+                }
                 StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
             }
             else
             {
                 newPos.y = mHit.point.y;
-                StopAllCoroutines();
+                if(fallIEn != null){
+                    StopCoroutine(fallIEn);
+                }
+                if(climbIEn != null){
+                    StopCoroutine(climbIEn);
+                }
                 StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
             }
             Destroy(other.gameObject);
@@ -425,6 +481,8 @@ public class playerController : MonoBehaviour
 
                 dest = startPos + destDist;
 
+                dest.z = -30;
+
                 //Physics.Raycast(new Ray(new Vector3(dest.x, dest.y), new Vector3(0, 0, 1)), out RaycastHit hit, float.MaxValue);
 
                 //dest.z = hit.point.z;
@@ -472,6 +530,8 @@ public class playerController : MonoBehaviour
                     anim.SetBool("IsGrounded", true);
                     anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
                     jumpLand.Stop(); // Particle End
+
+                    climbIEn = null;
                 }
 
                 yield return null;
@@ -504,8 +564,10 @@ public class playerController : MonoBehaviour
 
         if(!isPlayerJump)
         {
+            /*
             CinemachineVirtualCamera cineCam = GameObject.FindGameObjectWithTag("virtualCamera").GetComponent<CinemachineVirtualCamera>();
             cineCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 8f;
+            */
         }
         
         if (destDist.magnitude > 10 && isPlayerJump)
@@ -524,7 +586,7 @@ public class playerController : MonoBehaviour
 
             Physics.Raycast(new Ray(new Vector3(dest.x, dest.y), new Vector3(0, 0, 1)), out RaycastHit hit, float.MaxValue);
 
-            dest.z = hit.point.z;
+            dest.z = -30;
         }
 
         //Calculating the midpoint between the current and target nodes, and them moving it away from the camera
@@ -559,6 +621,7 @@ public class playerController : MonoBehaviour
                 anim.SetBool("IsGrounded", true);
                 anim.SetBool("Mirrored", !anim.GetBool("Mirrored"));
                 jumpLand.Stop(); // Particles
+                fallIEn = null;
             }
 
             /*
