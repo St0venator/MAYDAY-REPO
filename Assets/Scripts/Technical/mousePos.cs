@@ -35,7 +35,7 @@ public class mousePos : MonoBehaviour
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        Debug.DrawRay(cam.gameObject.transform.position, ray.direction);
+        //Debug.DrawRay(cam.gameObject.transform.position, ray.direction);
 
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, mask))
         {

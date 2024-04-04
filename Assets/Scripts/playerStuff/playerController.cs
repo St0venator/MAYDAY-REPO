@@ -581,7 +581,7 @@ public class playerController : MonoBehaviour
         {
             timer -= Time.deltaTime;
 
-            if (timer < 0)
+            if (timer <= 0)
             {
                 canJump = true;
                 Debug.Log("Jump Reset");

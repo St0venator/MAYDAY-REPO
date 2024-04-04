@@ -22,7 +22,7 @@ public class AISpawner : MonoBehaviour
 
     void SpawnLocation()
     {
-        int spawnNum = Random.Range(4, 10);
+        int spawnNum = Random.Range(2, 5);
 
         for(int i = 0; i < spawnNum; i++)
         {
