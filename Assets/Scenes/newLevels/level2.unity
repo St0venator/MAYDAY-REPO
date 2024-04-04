@@ -11533,13 +11533,17 @@ PrefabInstance:
       propertyPath: grid
       value: 
       objectReference: {fileID: 1827561387}
+    - target: {fileID: 7364562589721937419, guid: 7a472e3a32be36948abd2bbbf456c7bb, type: 3}
+      propertyPath: inky
+      value: 
+      objectReference: {fileID: 4914581355844590038, guid: fe40ab01b2febc2429e449df26430786, type: 3}
     - target: {fileID: 7763614053878251827, guid: 7a472e3a32be36948abd2bbbf456c7bb, type: 3}
       propertyPath: m_Name
       value: aiSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 7763614053878251827, guid: 7a472e3a32be36948abd2bbbf456c7bb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
