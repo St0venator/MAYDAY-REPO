@@ -386,43 +386,23 @@ public class playerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("NavalMine"))
         {
-            SoundManager.PlayMineSFX();
+            Debug.Log("BOOOOOM");
+            //SoundManager.PlayMineSFX();
             isExploded = true;
-            Debug.Log(isExploded);
 
-            Vector3 currPos = transform.position;
+            Debug.Log("BOOOOOM Firsst");
 
-            Vector3 newPos = currPos;
-
-            newPos -= new Vector3(0, 25);
-            
             isStunned = true;
 
-            Ray mRay = new Ray(newPos, new Vector3(0, 0, 1));
-
-            if (Physics.Raycast(mRay, out RaycastHit mHit, float.MaxValue, mask))
+            if(fallIEn != null)
             {
-                newPos.y = mHit.point.y;
-
-                if(fallIEn != null){
-                    StopCoroutine(fallIEn);
-                }
-                if(climbIEn != null){
-                    StopCoroutine(climbIEn);
-                }
-                StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
+                StopCoroutine(fallIEn);
             }
-            else
+            if(climbIEn != null)
             {
-                newPos.y = mHit.point.y;
-                if(fallIEn != null){
-                    StopCoroutine(fallIEn);
-                }
-                if(climbIEn != null){
-                    StopCoroutine(climbIEn);
-                }
-                StartCoroutine(fall(newPos, climbSpeed * 1.5f, false));
+                StopCoroutine(climbIEn);
             }
+
             Destroy(other.gameObject);
             explosion.Play();
         }
