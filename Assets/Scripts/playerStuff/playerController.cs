@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -64,9 +65,11 @@ public class playerController : MonoBehaviour
         if (isStunned)
         {
             StopAllCoroutines();
+            anim.SetBool("Stunned", true);
             if (stunTimer <= 0)
             {
                 isStunned = false;
+                anim.SetBool("Stunned", false);
                 stunTimer = 3.0f;
             }
             else
@@ -81,20 +84,29 @@ public class playerController : MonoBehaviour
         oxygenText.text = "Oxygen: " + OXY.displayOxygen();
 
         #region walking
+
+        anim.SetBool("Walking", false);
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
+            anim.SetBool("Walking", true);
+            anim.SetBool("Mirrored", false);
+
             transform.position -= Vector3.right * Time.deltaTime * walkSpeed;
         }
         if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
+            anim.SetBool("Walking", true);
+            anim.SetBool("Mirrored", true);
             transform.position += Vector3.right * Time.deltaTime * walkSpeed;
         }
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
+            anim.SetBool("Walking", true);
             transform.position -= Vector3.up * Time.deltaTime * walkSpeed;
         }
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
+            anim.SetBool("Walking", true);
             transform.position += Vector3.up * Time.deltaTime * walkSpeed;
         }
 

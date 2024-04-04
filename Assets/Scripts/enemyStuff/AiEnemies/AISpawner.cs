@@ -53,7 +53,11 @@ public class AISpawner : MonoBehaviour
 
             Collider[] hitColliders1 = Physics.OverlapSphere(new Vector3(xRange, yRange, -30), 1f, mask);
 
-            if(hitColliders1.Length > 0)
+
+            Collider[] hitColliders1 = Physics.OverlapSphere(new Vector3(xRange, yRange, -30), 1f, mask);
+
+            if (hitColliders1.Length > 0)
+
             {
                 validSpawn = true;
             }
@@ -79,7 +83,9 @@ public class AISpawner : MonoBehaviour
 
             Collider[] hitColliders1 = Physics.OverlapSphere(new Vector3(xRange, yRange, -30), 1f, mask);
 
+
             if(hitColliders1.Length > 0)
+
             {
                 validSpawn = true;
             }
