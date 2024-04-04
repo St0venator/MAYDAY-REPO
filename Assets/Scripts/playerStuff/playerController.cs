@@ -96,6 +96,14 @@ public class playerController : MonoBehaviour
         anim.SetBool("Walking", false);
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
+            Collider[] hitColliders1 = Physics.OverlapSphere(transform.position - Vector3.right, 1f, noGoLayer);
+
+            if(hitColliders1.Length == 0){
+                anim.SetBool("Walking", true);
+                anim.SetBool("Mirrored", false);
+
+                transform.position -= Vector3.right * Time.deltaTime * walkSpeed;
+            }
             anim.SetBool("Walking", true);
             anim.SetBool("Mirrored", false);
 

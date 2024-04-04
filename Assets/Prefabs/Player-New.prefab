@@ -73,6 +73,7 @@ Transform:
   - {fileID: 360419709774017010}
   - {fileID: 5360527961285979709}
   - {fileID: 672426800866671845}
+  - {fileID: 9057108590469204922}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &741581703789166746
@@ -100,7 +101,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &741581703789166745
 SphereCollider:
@@ -201,6 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee66c7ffa5db444d8d592ccdfab269a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noGoLayer:
+    serializedVersion: 2
+    m_Bits: 0
   jumpLand: {fileID: 3156496376317908007}
   explosion: {fileID: 5360527961285979699}
   isExploded: 0
@@ -265,7 +269,6 @@ MonoBehaviour:
   climbSpeed: 25
   upLimit: 5
   worldCursor: {fileID: 0}
-  childObj: {fileID: 1714480781030202504, guid: ea03cdb92f96fef44b99c815c991def2, type: 3}
   bulletRef: {fileID: 5362242595105757345, guid: 827c9f08bcc049645ba94ba17cafa324, type: 3}
   oxygenText: {fileID: 0}
   OXY: {fileID: 11400000, guid: dcb38d75d4601824298ca8af683ca54e, type: 2}
@@ -840,6 +843,61 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7196802604745430461, guid: 70dde9c1f87e01643b019aea419df941, type: 3}
+--- !u!1 &2111007015133300877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9057108590469204922}
+  - component: {fileID: 6737933253490299971}
+  m_Layer: 10
+  m_Name: collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9057108590469204922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111007015133300877}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 990820352845860225}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6737933253490299971
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111007015133300877}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.95
+  m_Height: 19.46
+  m_Direction: 1
+  m_Center: {x: 0, y: 4.7, z: 0}
 --- !u!1 &2168264962575621713
 GameObject:
   m_ObjectHideFlags: 0
