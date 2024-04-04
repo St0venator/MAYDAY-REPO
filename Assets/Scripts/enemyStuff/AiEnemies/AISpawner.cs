@@ -53,7 +53,9 @@ public class AISpawner : MonoBehaviour
 
             Ray zRay = new Ray(new Vector3(xRange, yRange), new Vector3(0, 0, 1));
 
-            if (Physics.Raycast(zRay, out RaycastHit zHit, float.MaxValue, mask))
+            Collider[] hitColliders1 = Physics.OverlapSphere(new Vector3(xRange, yRange, -30), 1f, mask);
+
+            if (hitColliders1.Length > 0)
             {
                 validSpawn = true;
             }
@@ -76,9 +78,9 @@ public class AISpawner : MonoBehaviour
             xRange = Random.Range(x, grid.gridSizeX/2);
             yRange = Random.Range(0, grid.gridSizeY);
 
-            Ray zRay = new Ray(new Vector3(xRange, yRange), new Vector3(0, 0, 1));
+            Collider[] hitColliders1 = Physics.OverlapSphere(new Vector3(xRange, yRange, -30), 1f, mask);
 
-            if (Physics.Raycast(zRay, out RaycastHit zHit, float.MaxValue, mask))
+            if (hitColliders1.Length > 0)
             {
                 validSpawn = true;
             }

@@ -112,7 +112,8 @@ public class crabBehavior : MonoBehaviour
         var swimP = transform.position;
         var swimP1X = Random.Range(swimP.x - 10, swimP.x + 10);
         var swimP1Y = Random.Range(swimP.y - 10, swimP.y + 10);
-        swimP1 = new Vector3(swimP1X, swimP1Y, -31.0f);
+        swimP1 = new Vector3(swimP1X, swimP1Y, -31f);
+
         yield return StartCoroutine(MoveObject(transform, swimP, swimP1, 3.0f));
         yield return StartCoroutine(MoveObject(transform, swimP1, swimP, 3.0f));
         while(true)
