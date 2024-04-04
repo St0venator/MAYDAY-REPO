@@ -153,6 +153,10 @@ public class MenuManager : MonoBehaviour
         HazardsSpawn.SetActive(false);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
 
 
