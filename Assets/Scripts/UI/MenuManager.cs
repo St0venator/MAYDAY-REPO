@@ -22,11 +22,15 @@ public class MenuManager : MonoBehaviour
     public SoundManager SoundManager;
     public Slider AudioSlider;
 
+    //Tutorial Objects
+    public GameObject TutorialPanel;
+
     private void Awake()
     {
         //Hide Pause Menu Assets
         PausePanel.SetActive(false);
         AudioSlider.gameObject.SetActive(false);
+        TutorialPanel.SetActive(false);
 
         //Set the audio to the last saved slider value
         SoundManager.ChangeVolume(AudioSlider.value);
@@ -96,5 +100,14 @@ public class MenuManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void LoadTutorial()
+    {
+        TutorialPanel.SetActive(true);
+    }
+    public void HideTutorial()
+    {
+        TutorialPanel.SetActive(false);
     }
 }
