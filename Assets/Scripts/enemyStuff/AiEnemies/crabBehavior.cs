@@ -59,36 +59,33 @@ public class crabBehavior : MonoBehaviour
         inAttackRange = Physics.CheckSphere(transform.position, crabAttackRange, player);
         //inGround = Physics.CheckSphere(transform.position, crabDistancing, wall);
 
-        if(cantChase && inSightRange)
-        { 
-            Waiting();
-        }
-        else
-        {
-            if(!inSightRange && !inAttackRange) CrabPatrol();
-
-            if(inSightRange && !inAttackRange) CrabChase();
-
-            if(inSightRange && inAttackRange) CrabAttack();
-        }
-        
+        if(cantChase)
+    { 
+        Waiting();
     }
-
-    void Waiting()
+    else
     {
-        while(cantChase)
-        {
-            if (stunTimer <= 0)
-            {
-                GetComponent<Unit>().enabled = true;
-                cantChase = false;
-                stunTimer = 3.0f;
-            }
-            else
-            {
-                stunTimer -= Time.deltaTime;
-            }
-        }
+        if(!inSightRange && !inAttackRange) CrabPatrol();
+
+        if(inSightRange && !inAttackRange) CrabChase();
+
+        if(inSightRange && inAttackRange) CrabAttack();
+    }
+    
+}
+
+void Waiting()
+{
+    if (stunTimer <= 0)
+    {
+        GetComponent<Unit>().enabled = true;
+        cantChase = false;
+        stunTimer = 5.0f; // Reset the stun timer to its original value if you want the stun to be repeatable
+    }
+    else
+    {
+        stunTimer -= Time.deltaTime;
+    }
     }
 
     //help visuallize the different atributes of the crab
@@ -113,9 +110,16 @@ public class crabBehavior : MonoBehaviour
 
     void CrabChase()
     {
-        StopAllCoroutines();
-        pathFinder.pausePath = false;
-        GetComponent<Unit>().enabled = true;   
+        if(cantChase)
+        {
+            GetComponent<Unit>().enabled = false;
+        }
+        else
+        {
+            StopAllCoroutines();
+            pathFinder.pausePath = false;
+            GetComponent<Unit>().enabled = true;   
+        }
     }
 
     void CrabAttack()
