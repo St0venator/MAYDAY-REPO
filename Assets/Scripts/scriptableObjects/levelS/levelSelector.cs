@@ -41,6 +41,11 @@ public class levelSelector : ScriptableObject
     private void Awake()
     {
         preSetScenes();
+        //setup();
+    }
+
+    private void Update()
+    {
         setup();
     }
 }
