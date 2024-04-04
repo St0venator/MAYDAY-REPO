@@ -9,6 +9,10 @@ public class MenuManager : MonoBehaviour
 {
     public levelSelector LS = null;
 
+    //Particles and Hazards
+    public GameObject ParticlesSpawn;
+    public GameObject HazardsSpawn;
+
     //Load Screen Game Objects
     public GameObject loadingScene;
     public Slider Loadslider;
@@ -22,15 +26,23 @@ public class MenuManager : MonoBehaviour
     public SoundManager SoundManager;
     public Slider AudioSlider;
 
-    //Tutorial Objects
-    public GameObject TutorialPanel;
+    //PlayerMenu
+    public GameObject PlayerTutorial;
+    //HazardMenu
+    public GameObject HazardTutorial;
+    //Tutorial Back Panel
+    public GameObject BackPanel;
 
     private void Awake()
     {
         //Hide Pause Menu Assets
         PausePanel.SetActive(false);
         AudioSlider.gameObject.SetActive(false);
-        TutorialPanel.SetActive(false);
+        
+        //Tutorial Items
+        PlayerTutorial.SetActive(false);
+        HazardTutorial.SetActive(false);
+        BackPanel.SetActive(false);
 
         //Set the audio to the last saved slider value
         SoundManager.ChangeVolume(AudioSlider.value);
@@ -42,7 +54,7 @@ public class MenuManager : MonoBehaviour
     public void ToScene(string scene)
     {
         LS.changeScenes(this);
-        //SceneManager.LoadScene(scene);
+        
     }
     #endregion
 
@@ -102,12 +114,47 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void LoadTutorial()
+
+    public void LoadPlayerTut()
     {
-        TutorialPanel.SetActive(true);
+        PlayerTutorial.SetActive(true);
     }
-    public void HideTutorial()
+    public void HidePlayerTutorial()
     {
-        TutorialPanel.SetActive(false);
+        PlayerTutorial.SetActive(false);
     }
+
+    public void LoadHazardTut()
+    {
+        HazardTutorial.SetActive(true);
+    }
+    public void HideHazardTut()
+    {
+        HazardTutorial.SetActive(false);
+    }
+
+    public void BackPannelOn()
+    {
+        BackPanel.SetActive(true);
+    }
+    public void BackPannelOff()
+    {
+        BackPanel.SetActive(false);
+    }
+
+    public void HazardsOn()
+    {
+        ParticlesSpawn.SetActive(true);
+        HazardsSpawn.SetActive(true);
+    }
+    public void HazardsOff()
+    {       
+        ParticlesSpawn.SetActive(false);
+        HazardsSpawn.SetActive(false);
+    }
+
+
+
+
+
 }
