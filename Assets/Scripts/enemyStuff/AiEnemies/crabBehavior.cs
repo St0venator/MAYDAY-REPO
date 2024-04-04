@@ -44,7 +44,7 @@ public class crabBehavior : MonoBehaviour
         crabAnim = GetComponent<Animator>();
         pathFinder = GameObject.Find("A_").GetComponent<Pathfinding>();
         GetComponent<Unit>().enabled = false;
-        pathFinder.pausePath = true;
+        //pathFinder.pausePath = true;
         playerObj = FindObjectOfType<playerController>();
     }
 
@@ -59,19 +59,12 @@ public class crabBehavior : MonoBehaviour
         inAttackRange = Physics.CheckSphere(transform.position, crabAttackRange, player);
         //inGround = Physics.CheckSphere(transform.position, crabDistancing, wall);
 
-        if(cantChase)
-    { 
-        Waiting();
-    }
-    else
-    {
+   
         if(!inSightRange && !inAttackRange) CrabPatrol();
 
         if(inSightRange && !inAttackRange) CrabChase();
 
-        if(inSightRange && inAttackRange) CrabAttack();
-    }
-    
+        if(inSightRange && inAttackRange) CrabAttack(); 
 }
 
 void Waiting()
@@ -105,36 +98,27 @@ void Waiting()
     {
         StartCoroutine("StartWalking");
         GetComponent<Unit>().enabled = false;
-        pathFinder.pausePath = true;
+        //pathFinder.pausePath = true;
     }
 
     void CrabChase()
     {
-        if(cantChase)
-        {
-            GetComponent<Unit>().enabled = false;
-        }
-        else
-        {
-            StopAllCoroutines();
-            pathFinder.pausePath = false;
-            GetComponent<Unit>().enabled = true;   
-        }
+        StopAllCoroutines();
+        //pathFinder.pausePath = false;
+        GetComponent<Unit>().enabled = true;   
     }
 
     void CrabAttack()
     {
         crabAnim.SetBool("Attack", true);
-        GetComponent<Unit>().enabled = false;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            cantChase = true;
             playerObj.isStunned = true;
-            GetComponent<Unit>().enabled = false;
+            GetComponent<Unit>().speed = 2f;
         }
     }
 
