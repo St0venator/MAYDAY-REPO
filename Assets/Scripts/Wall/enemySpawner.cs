@@ -37,7 +37,7 @@ public class enemySpawner : MonoBehaviour
         {
             int randOdds = Random.Range(0, 101);
 
-            if(randOdds >= 60)
+            if(randOdds >= 80)
             {
                 int randChoice = Random.Range(0, 2);
 
