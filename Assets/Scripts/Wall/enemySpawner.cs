@@ -84,7 +84,7 @@ public class enemySpawner : MonoBehaviour
             xRange = Random.Range(-100, 100);
             yRange = Random.Range(0, 200);
             
-            Ray zRay = new Ray(new Vector3(xRange, yRange), new Vector3(0, 0, 1));
+            //Ray zRay = new Ray(new Vector3(xRange, yRange), new Vector3(0, 0, 1));
 
             Collider[] hitColliders1 = Physics.OverlapSphere(new Vector3(xRange, yRange, -30), 1f, mask);
 
