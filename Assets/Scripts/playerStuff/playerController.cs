@@ -65,9 +65,11 @@ public class playerController : MonoBehaviour
         if (isStunned)
         {
             StopAllCoroutines();
+            anim.SetBool("Stunned", true);
             if (stunTimer <= 0)
             {
                 isStunned = false;
+                anim.SetBool("Stunned", false);
                 stunTimer = 3.0f;
             }
             else
