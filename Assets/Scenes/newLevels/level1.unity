@@ -19564,6 +19564,14 @@ PrefabInstance:
       value: winCon
       objectReference: {fileID: 0}
     - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 20.313
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 15.26193
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.2
       objectReference: {fileID: 0}

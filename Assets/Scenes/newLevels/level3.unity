@@ -1807,12 +1807,24 @@ PrefabInstance:
       value: winCon
       objectReference: {fileID: 0}
     - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 29.612232
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.9907
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 11.707567
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 174.5
+      value: 178.2
       objectReference: {fileID: 0}
     - target: {fileID: 3685664607377046093, guid: 889d5b0f9669610459a7cfa0447f1fb7, type: 3}
       propertyPath: m_LocalPosition.z
