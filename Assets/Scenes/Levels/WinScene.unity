@@ -9982,13 +9982,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LS: {fileID: 0}
+  ParticlesSpawn: {fileID: 0}
+  HazardsSpawn: {fileID: 0}
   loadingScene: {fileID: 0}
   Loadslider: {fileID: 0}
-  PausePanel: {fileID: 75768985}
+  PausePanel: {fileID: 0}
   PauseButton: {fileID: 0}
-  UnPauseButton: {fileID: 1900908228}
+  UnPauseButton: {fileID: 1900908230}
   SoundManager: {fileID: 0}
   AudioSlider: {fileID: 0}
+  PlayerTutorial: {fileID: 0}
+  HazardTutorial: {fileID: 0}
+  BackPanel: {fileID: 0}
 --- !u!1001 &8424760906457966564
 PrefabInstance:
   m_ObjectHideFlags: 0
