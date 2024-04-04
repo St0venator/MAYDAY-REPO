@@ -17,8 +17,4 @@ MonoBehaviour:
   - level2
   - level3
   - level5
-  - level1
-  - level2
-  - level3
-  - level5
   nextScene: level2
