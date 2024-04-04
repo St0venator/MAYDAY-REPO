@@ -76,7 +76,7 @@ public class playerController : MonoBehaviour
             }
             Debug.Log(isStunned);
         }
-
+        else{
         OXY.oxygenDecrement(Time.deltaTime);
         oxygenText.text = "Oxygen: " + OXY.displayOxygen();
 
@@ -246,6 +246,7 @@ public class playerController : MonoBehaviour
                     StartCoroutine(climb(new Vector3[] { findStrafePos(false) }, climbSpeed * 3f));
                 }
             }
+        }
         }
     }
 

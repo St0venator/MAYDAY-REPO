@@ -108,9 +108,9 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.057167083
-  m_Height: 0.20298406
-  m_Direction: 1
+  m_Radius: 7.79
+  m_Height: 20
+  m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7389246528754877018
 MonoBehaviour:
@@ -126,5 +126,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swimP: {x: 1.695801, y: 22.37363, z: -34.94}
   swimP1: {x: 7, y: 15, z: -34.94}
-  InkParticles: {fileID: 0}
+  InkParticles: {fileID: 643523672096944302, guid: e7b199359446499429c31ac12d6d07f6, type: 3}
   squidAnim: {fileID: 1846447037673003286}

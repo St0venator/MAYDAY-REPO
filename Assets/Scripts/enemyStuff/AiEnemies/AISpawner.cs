@@ -22,7 +22,7 @@ public class AISpawner : MonoBehaviour
 
     void SpawnLocation()
     {
-        int spawnNum = Random.Range(5, 10);
+        int spawnNum = Random.Range(4, 10);
 
         for(int i = 0; i < spawnNum; i++)
         {
@@ -60,7 +60,8 @@ public class AISpawner : MonoBehaviour
 
         Vector3 spawnPos = new Vector3(xRange, yRange, -31);
 
-        Instantiate(crabby, spawnPos, Quaternion.identity);
+        GameObject newCrabby = Instantiate(crabby, spawnPos, Quaternion.identity);
+        newCrabby.transform.Rotate(new Vector3(0, 90, 0));
         }while(!validSpawn);
     }
 

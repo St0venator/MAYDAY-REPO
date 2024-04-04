@@ -29,7 +29,7 @@ public class missle : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //player.isStunned = true;
+            player.isStunned = true;
             Destroy(gameObject);
             Debug.Log("Be stunned");
         }
