@@ -19,8 +19,9 @@ public class squidBehavior : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            Vector3 iPos = transform.position;
             squidAnim.SetBool("Attack", true);
-            Instantiate(InkParticles);
+            Instantiate(InkParticles, iPos, Quaternion.identity);
             Debug.Log("Get Inked");
             Destroy(gameObject);
         }
