@@ -19869,7 +19869,7 @@ Transform:
   m_GameObject: {fileID: 1211798970}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.6979308, w: 0.71616524}
-  m_LocalPosition: {x: -78.3, y: -24.8, z: -26.56}
+  m_LocalPosition: {x: -70, y: -24.8, z: -26.56}
   m_LocalScale: {x: 1, y: 1.587286, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23458,6 +23458,10 @@ PrefabInstance:
       propertyPath: SoundManager
       value: 
       objectReference: {fileID: 1169082947}
+    - target: {fileID: 741581703789166747, guid: bf8e2b014a44218428a7034e5993c96a, type: 3}
+      propertyPath: noGoLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 990820352845860225, guid: bf8e2b014a44218428a7034e5993c96a, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3
